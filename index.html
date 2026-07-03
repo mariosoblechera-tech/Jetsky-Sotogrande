@@ -1,0 +1,1649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sotojets – Jet Ski Sotogrande | Book Now</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── TOKEN SYSTEM ─── */
+    :root {
+      --ink:       #061C30;
+      --sea:       #0057A8;
+      --wake:      #00C9B8;
+      --fire:      #FF5635;
+      --fire-dark: #D9401D;
+      --sand:      #F4F8FF;
+      --mist:      #E8EFF8;
+      --fog:       #7A8FA6;
+      --white:     #FFFFFF;
+      --gold:      #F5B700;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── UTILITY ─── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--wake); margin-bottom: 12px; display: block;
+    }
+    .section-h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900; line-height: 1.05;
+      color: var(--ink); letter-spacing: -0.5px;
+    }
+    .section-h2 em { font-style: normal; color: var(--sea); }
+    .section-sub {
+      font-size: 1rem; color: var(--fog); line-height: 1.75;
+      max-width: 520px; margin-top: 14px;
+    }
+    .stars { color: var(--gold); letter-spacing: 2px; }
+
+    /* scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ─── URGENCY STRIP ─── */
+    .urgency {
+      background: var(--fire);
+      color: var(--white);
+      text-align: center;
+      padding: 9px 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      position: relative; z-index: 999;
+    }
+    .urgency strong { font-weight: 800; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 34px; left: 0; right: 0;
+      z-index: 998;
+      padding: 18px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: top 0.3s ease, padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    }
+    nav.scrolled {
+      top: 0;
+      background: rgba(6, 28, 48, 0.96);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 2px 30px rgba(0,0,0,0.3);
+      padding: 16px 28px;
+    }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.7rem; font-weight: 900;
+      color: var(--white); text-decoration: none;
+      letter-spacing: 0px; line-height: 1;
+    }
+    .nav-logo .dot { color: var(--wake); }
+    .nav-book {
+      background: var(--fire); color: var(--white);
+      padding: 10px 24px; border-radius: 6px;
+      font-weight: 700; font-size: 0.875rem;
+      text-decoration: none; letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.15s;
+      border: 2px solid transparent;
+    }
+    .nav-book:hover { background: var(--fire-dark); transform: scale(1.04); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      background: var(--ink);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding-top: 80px;
+    }
+
+    /* Speed lines — the signature element */
+    .speed-lines {
+      position: absolute; inset: 0;
+      pointer-events: none; overflow: hidden;
+    }
+    .speed-lines::before,
+    .speed-lines::after {
+      content: '';
+      position: absolute;
+      background: linear-gradient(
+        105deg,
+        transparent 0%,
+        rgba(0,201,184,0.06) 30%,
+        rgba(0,87,168,0.12) 60%,
+        transparent 100%
+      );
+    }
+    .speed-lines::before {
+      width: 200%; height: 200%;
+      top: -40%; right: -60%;
+      transform: rotate(-12deg);
+      animation: streak 6s ease-in-out infinite alternate;
+    }
+    .speed-lines::after {
+      width: 160%; height: 160%;
+      top: -20%; right: -30%;
+      transform: rotate(-8deg);
+      animation: streak 8s ease-in-out infinite alternate-reverse;
+      background: linear-gradient(
+        105deg,
+        transparent 0%,
+        rgba(0,201,184,0.04) 40%,
+        rgba(0,87,168,0.08) 70%,
+        transparent 100%
+      );
+    }
+    @keyframes streak {
+      from { opacity: 0.6; }
+      to   { opacity: 1; }
+    }
+
+    /* Geometric wake lines right side */
+    .wake-lines {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 50%;
+      pointer-events: none;
+    }
+    .wake-lines svg { position: absolute; right: 0; top: 0; height: 100%; width: 100%; }
+
+    /* Floating wave SVG bottom */
+    .hero-wave-bottom {
+      position: absolute; bottom: -1px; left: 0; right: 0; z-index: 2;
+    }
+
+    .hero-inner {
+      position: relative; z-index: 10;
+      padding: 0 28px;
+      max-width: 680px; margin-left: auto; margin-right: auto;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(0,201,184,0.35);
+      background: rgba(0,201,184,0.08);
+      color: var(--wake);
+      padding: 5px 14px; border-radius: 4px;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: -1px;
+      margin-bottom: 24px;
+    }
+    .hero h1 .line2 {
+      display: block;
+      color: var(--wake);
+      -webkit-text-stroke: 2px var(--wake);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      max-width: 460px;
+      margin-bottom: 36px;
+    }
+
+    .hero-ctas {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+    .btn-fire {
+      background: var(--fire); color: var(--white);
+      padding: 16px 32px; border-radius: 6px;
+      font-weight: 700; font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 6px 28px rgba(255,86,53,0.4);
+    }
+    .btn-fire:hover { background: var(--fire-dark); transform: translateY(-2px); box-shadow: 0 10px 35px rgba(255,86,53,0.5); }
+    .btn-ghost {
+      background: transparent; color: rgba(255,255,255,0.8);
+      padding: 16px 30px; border-radius: 6px;
+      font-weight: 600; font-size: 0.95rem;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.2);
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--wake); color: var(--wake); }
+
+    .hero-proof {
+      display: flex; gap: 36px; flex-wrap: wrap; align-items: center;
+    }
+    .proof-item { }
+    .proof-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.2rem; font-weight: 900; color: var(--white);
+      line-height: 1; display: block;
+    }
+    .proof-num .accent { color: var(--wake); }
+    .proof-label {
+      font-size: 0.72rem; color: rgba(255,255,255,0.45);
+      text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;
+    }
+    .proof-divider { width: 1px; height: 40px; background: rgba(255,255,255,0.12); }
+
+    /* ─── TRUST STRIP ─── */
+    .trust-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--mist);
+      padding: 20px 28px;
+    }
+    .trust-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; gap: 0; align-items: center;
+      overflow-x: auto; scrollbar-width: none;
+    }
+    .trust-inner::-webkit-scrollbar { display: none; }
+    .trust-item {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 0.82rem; font-weight: 600; color: var(--ink);
+      padding: 0 28px; white-space: nowrap; flex-shrink: 0;
+    }
+    .trust-item:not(:last-child) { border-right: 1px solid var(--mist); }
+    .trust-item svg { flex-shrink: 0; }
+
+    /* ─── PACKAGES ─── */
+    .packages {
+      background: var(--sand);
+      padding: 88px 0;
+    }
+    .packages-header {
+      text-align: center; margin-bottom: 56px;
+    }
+    .packages-header .section-sub { margin: 14px auto 0; }
+
+    .pkg-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .pkg-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 36px 30px;
+      border: 2px solid transparent;
+      position: relative;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+    .pkg-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    }
+    .pkg-card.featured {
+      border-color: var(--fire);
+      box-shadow: 0 12px 48px rgba(255,86,53,0.12);
+    }
+    .pkg-card.featured:hover {
+      box-shadow: 0 24px 60px rgba(255,86,53,0.18);
+    }
+
+    .pkg-popular {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--fire); color: var(--white);
+      font-size: 0.7rem; font-weight: 800;
+      padding: 5px 16px; border-radius: 40px;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .pkg-tag {
+      font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--fog); margin-bottom: 8px;
+    }
+    .pkg-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.8rem; font-weight: 900; color: var(--ink);
+      margin-bottom: 4px; letter-spacing: -0.3px;
+    }
+    .pkg-tagline {
+      font-size: 0.82rem; color: var(--fog);
+      margin-bottom: 22px; line-height: 1.5;
+    }
+    .pkg-divider { border: none; border-top: 1px solid var(--mist); margin-bottom: 22px; }
+    .pkg-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3.4rem; font-weight: 900;
+      color: var(--ink); line-height: 1; margin-bottom: 4px;
+    }
+    .pkg-price .currency { font-size: 1.6rem; vertical-align: top; margin-top: 10px; display: inline-block; }
+    .pkg-price-note {
+      font-size: 0.78rem; color: var(--fog); margin-bottom: 24px;
+    }
+    .pkg-includes {
+      list-style: none; margin-bottom: 28px;
+    }
+    .pkg-includes li {
+      font-size: 0.83rem; color: #455A6E;
+      padding: 7px 0;
+      display: flex; align-items: flex-start; gap: 10px;
+      border-bottom: 1px solid var(--mist);
+      line-height: 1.4;
+    }
+    .pkg-includes li:last-child { border-bottom: none; }
+    .pkg-includes .chk {
+      color: var(--wake); font-weight: 800;
+      font-size: 0.9rem; flex-shrink: 0; margin-top: 1px;
+    }
+
+    .btn-pkg {
+      display: block; text-align: center;
+      padding: 14px; border-radius: 8px;
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none; letter-spacing: 0.2px;
+      transition: all 0.2s;
+    }
+    .btn-pkg-default {
+      background: var(--ink); color: var(--white);
+    }
+    .btn-pkg-default:hover { background: var(--sea); }
+    .btn-pkg-fire {
+      background: var(--fire); color: var(--white);
+      box-shadow: 0 4px 20px rgba(255,86,53,0.3);
+    }
+    .btn-pkg-fire:hover { background: var(--fire-dark); box-shadow: 0 6px 28px rgba(255,86,53,0.45); }
+
+    .pkg-note {
+      text-align: center; margin-top: 28px;
+      font-size: 0.78rem; color: var(--fog);
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how {
+      background: var(--white);
+      padding: 88px 0;
+    }
+    .how-header { margin-bottom: 56px; }
+    .how-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px; position: relative;
+    }
+    /* connecting line */
+    .how-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px; left: calc(16.66% + 10px); right: calc(16.66% + 10px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--wake), var(--sea));
+      opacity: 0.3;
+    }
+    .step { }
+    .step-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--sea), var(--wake));
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.5rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 20px rgba(0,87,168,0.25);
+    }
+    .step h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.35rem; font-weight: 800;
+      color: var(--ink); margin-bottom: 10px; letter-spacing: -0.3px;
+    }
+    .step p { font-size: 0.85rem; color: var(--fog); line-height: 1.7; }
+
+    /* ─── WHY US ─── */
+    .why {
+      background: var(--ink);
+      padding: 88px 0;
+      position: relative; overflow: hidden;
+    }
+    /* subtle grid pattern */
+    .why::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,201,184,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,201,184,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+    .why-header { margin-bottom: 56px; position: relative; }
+    .why-header .section-h2 { color: var(--white); }
+    .why-header .section-sub { color: rgba(255,255,255,0.45); }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px; position: relative;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; padding: 28px 24px;
+      transition: all 0.25s;
+    }
+    .why-card:hover {
+      background: rgba(0,201,184,0.07);
+      border-color: rgba(0,201,184,0.25);
+      transform: translateY(-4px);
+    }
+    .why-icon {
+      width: 48px; height: 48px;
+      background: rgba(0,201,184,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 18px;
+    }
+    .why-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem; font-weight: 800;
+      color: var(--white); margin-bottom: 8px; letter-spacing: -0.2px;
+    }
+    .why-card p { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+    /* ─── REVIEWS ─── */
+    .reviews {
+      background: var(--sand);
+      padding: 88px 0;
+    }
+    .reviews-header { margin-bottom: 56px; }
+    .reviews-meta {
+      display: flex; align-items: center; gap: 12px;
+      margin-top: 10px;
+    }
+    .reviews-meta .stars { font-size: 1.1rem; }
+    .reviews-meta span { font-size: 0.82rem; color: var(--fog); font-weight: 500; }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: 12px; padding: 28px 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+      display: flex; flex-direction: column;
+    }
+    .review-card:hover { transform: translateY(-4px); }
+    .review-stars { margin-bottom: 14px; font-size: 0.9rem; }
+    .review-quote {
+      font-size: 0.875rem; color: #374151;
+      line-height: 1.75; font-style: italic;
+      flex: 1; margin-bottom: 20px;
+    }
+    .review-quote::before { content: '"'; }
+    .review-quote::after { content: '"'; }
+    .reviewer {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .reviewer-av {
+      width: 40px; height: 40px; border-radius: 50%;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem; font-weight: 900; color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .reviewer-name { font-weight: 700; font-size: 0.875rem; color: var(--ink); }
+    .reviewer-sub { font-size: 0.72rem; color: var(--fog); }
+
+    /* ─── FAQ ─── */
+    .faq {
+      background: var(--white);
+      padding: 88px 0;
+    }
+    .faq-header { text-align: center; margin-bottom: 48px; }
+    .faq-list { max-width: 700px; margin: 0 auto; }
+
+    .faq-item {
+      border: 1px solid var(--mist);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .faq-item:hover { border-color: rgba(0,201,184,0.4); }
+    .faq-item.open { border-color: var(--wake); }
+
+    .faq-q {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 22px; cursor: pointer;
+      font-weight: 600; font-size: 0.9rem; color: var(--ink);
+      background: var(--white); user-select: none;
+      transition: background 0.15s;
+      gap: 16px;
+    }
+    .faq-q:hover { background: #F8FAFC; }
+    .faq-toggle {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--mist); color: var(--ink);
+      font-size: 1.1rem; font-weight: 300; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; line-height: 1;
+    }
+    .faq-item.open .faq-toggle {
+      background: var(--wake); color: var(--white); transform: rotate(45deg);
+    }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 22px;
+      font-size: 0.85rem; color: var(--fog); line-height: 1.75;
+    }
+    .faq-item.open .faq-a { max-height: 180px; padding: 0 22px 18px; }
+
+    /* ─── FINAL CTA ─── */
+    .final {
+      background: linear-gradient(135deg, #061C30 0%, #0B3A6B 60%, #0057A8 100%);
+      padding: 100px 0; text-align: center; position: relative; overflow: hidden;
+    }
+    .final::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        105deg,
+        transparent,
+        transparent 60px,
+        rgba(0,201,184,0.03) 60px,
+        rgba(0,201,184,0.03) 61px
+      );
+      pointer-events: none;
+    }
+    .final-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; padding: 0 24px; }
+    .final h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      font-weight: 900; color: var(--white);
+      line-height: 0.95; margin-bottom: 18px; letter-spacing: -1px;
+    }
+    .final h2 em { font-style: normal; color: var(--wake); }
+    .final p { color: rgba(255,255,255,0.5); line-height: 1.75; margin-bottom: 36px; font-size: 0.95rem; }
+    .final-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-call {
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.8);
+      padding: 16px 28px; border-radius: 6px;
+      font-weight: 600; font-size: 0.9rem;
+      text-decoration: none;
+      border: 2px solid rgba(255,255,255,0.18);
+      display: inline-flex; align-items: center; gap: 9px;
+      transition: all 0.2s;
+    }
+    .btn-call:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #040E1B; color: rgba(255,255,255,0.3);
+      padding: 22px 24px; text-align: center;
+      font-size: 0.75rem;
+    }
+    footer a { color: var(--wake); text-decoration: none; }
+
+    /* ─── FLOATING ─── */
+    .float-wa {
+      position: fixed; bottom: 88px; right: 22px;
+      width: 54px; height: 54px; border-radius: 50%;
+      background: #25D366; color: var(--white);
+      font-size: 1.5rem;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      z-index: 990; transition: transform 0.2s;
+      animation: bobble 3s ease-in-out infinite;
+    }
+    .float-wa:hover { transform: scale(1.1); animation: none; }
+    @keyframes bobble {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .mobile-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--fire);
+      padding: 13px 24px;
+      text-align: center;
+      font-weight: 700; font-size: 0.95rem;
+      color: var(--white); text-decoration: none;
+      z-index: 989; display: none;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+      letter-spacing: 0.3px;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .pkg-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .pkg-card.featured { transform: none; }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 3.4rem; }
+      .how-steps { grid-template-columns: 1fr; gap: 32px; }
+      .how-steps::before { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .mobile-bar { display: block; }
+      .float-wa { bottom: 68px; }
+      .packages, .how, .why, .reviews, .faq { padding: 60px 0; }
+      .final { padding: 72px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-proof { gap: 20px; }
+      .proof-divider { display: none; }
+      .hero-ctas { flex-direction: column; }
+      .btn-fire, .btn-ghost { justify-content: center; }
+    }
+
+    /* ══════════════════════════════════════════
+       BOOKING MODAL
+    ══════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(4,12,24,0.88);
+      backdrop-filter: blur(10px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 16px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: #0B2640;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      width: 100%; max-width: 860px;
+      max-height: 92vh; overflow: hidden;
+      display: flex; flex-direction: column;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.open .modal { transform: translateY(0) scale(1); }
+
+    .modal-line { height: 3px; background: rgba(255,255,255,0.06); position: relative; overflow: hidden; }
+    .modal-line-fill {
+      height: 100%; width: 50%;
+      background: linear-gradient(90deg, var(--sea), var(--wake));
+      transition: width 0.4s ease;
+    }
+    .modal-progress {
+      padding: 18px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .progress-steps { display: flex; align-items: center; }
+    .p-step {
+      display: flex; align-items: center; gap: 9px;
+      font-size: 0.82rem; font-weight: 600;
+      color: rgba(255,255,255,0.3); transition: color 0.3s;
+    }
+    .p-step.active { color: var(--white); }
+    .p-step.done  { color: var(--wake); }
+    .p-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.78rem; font-weight: 700;
+      transition: all 0.3s; flex-shrink: 0;
+    }
+    .p-step.active .p-num,
+    .p-step.done  .p-num { background: var(--wake); color: var(--ink); }
+    .p-arrow { width: 36px; height: 1px; background: rgba(255,255,255,0.1); margin: 0 12px; flex-shrink: 0; }
+    .modal-close {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255,255,255,0.07); border: none;
+      color: rgba(255,255,255,0.5); font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.14); color: var(--white); }
+
+    .modal-body { display: flex; flex: 1; overflow: hidden; }
+
+    .step-panel { display: none; flex: 1; overflow-y: auto; }
+    .step-panel.active { display: flex; }
+
+    /* Calendar section */
+    .cal-section {
+      flex: 1; padding: 28px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      overflow-y: auto;
+    }
+    .cal-section h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.25rem; font-weight: 800; color: var(--white);
+      margin-bottom: 22px; display: flex; align-items: center; gap: 10px;
+    }
+    .step-dot {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--wake); color: var(--ink);
+      font-size: 0.78rem; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .calendar-nav {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;
+    }
+    .cal-nav-btn {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.6); font-size: 1rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .cal-nav-btn:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+    .cal-month {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem; font-weight: 800; color: var(--white); letter-spacing: 0.5px;
+    }
+    .cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 26px;
+    }
+    .cal-day-name {
+      text-align: center; font-size: 0.65rem; font-weight: 700;
+      color: var(--fog); text-transform: uppercase; letter-spacing: 1px; padding: 6px 0;
+    }
+    .cal-day {
+      text-align: center; padding: 9px 4px; border-radius: 8px;
+      font-size: 0.85rem; font-weight: 500; cursor: pointer;
+      transition: all 0.18s; border: 1px solid transparent; color: rgba(255,255,255,0.75);
+    }
+    .cal-day:hover:not(.past):not(.empty) { background: rgba(0,201,184,0.12); border-color: rgba(0,201,184,0.25); color: var(--wake); }
+    .cal-day.selected { background: var(--wake); color: var(--ink); font-weight: 700; border-color: var(--wake); }
+    .cal-day.today:not(.selected) { color: var(--wake); font-weight: 700; }
+    .cal-day.past  { color: rgba(255,255,255,0.15); cursor: not-allowed; text-decoration: line-through; }
+    .cal-day.empty { cursor: default; }
+
+    .time-header {
+      font-size: 0.72rem; font-weight: 700;
+      color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+    .time-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .time-slot {
+      padding: 10px 6px; border-radius: 8px; text-align: center;
+      font-size: 0.8rem; font-weight: 600;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      cursor: pointer; transition: all 0.18s; color: rgba(255,255,255,0.7);
+      font-family: 'Inter', sans-serif;
+    }
+    .time-slot:hover { background: rgba(0,201,184,0.1); border-color: rgba(0,201,184,0.3); color: var(--wake); }
+    .time-slot.selected { background: var(--wake); border-color: var(--wake); color: var(--ink); font-weight: 700; }
+
+    /* Summary sidebar */
+    .m-summary {
+      width: 230px; flex-shrink: 0; padding: 28px 20px;
+      background: rgba(255,255,255,0.02);
+      display: flex; flex-direction: column;
+    }
+    .m-summary-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem; font-weight: 800; color: var(--white); margin-bottom: 18px;
+    }
+    .m-pkg { padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 2px; }
+    .m-pkg-name { font-size: 0.82rem; font-weight: 600; color: var(--white); margin-bottom: 3px; }
+    .m-pkg-detail { font-size: 0.7rem; color: var(--fog); }
+    .m-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.8rem;
+    }
+    .m-row .lbl { color: var(--fog); }
+    .m-row .val { font-weight: 700; color: var(--white); }
+    .m-total {
+      display: flex; justify-content: space-between; align-items: center; padding: 14px 0;
+    }
+    .m-total .lbl { font-size: 0.82rem; font-weight: 700; color: var(--white); }
+    .m-total .val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem; font-weight: 900; color: var(--wake);
+    }
+    .m-sel {
+      background: rgba(0,201,184,0.08); border: 1px solid rgba(0,201,184,0.2);
+      border-radius: 8px; padding: 11px 12px; margin-bottom: 12px;
+      font-size: 0.74rem; color: rgba(255,255,255,0.5); line-height: 1.6;
+    }
+    .m-sel .sl { color: var(--wake); font-weight: 700; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 1px; }
+    .m-sel .sv { color: var(--white); font-weight: 600; }
+    .m-note { font-size: 0.66rem; color: rgba(255,255,255,0.2); line-height: 1.6; margin-top: auto; padding-top: 12px; }
+
+    .btn-continue {
+      width: 100%; padding: 13px;
+      background: var(--wake); color: var(--ink);
+      border: none; border-radius: 8px;
+      font-weight: 800; font-size: 0.875rem;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.2s; margin-top: 14px;
+      opacity: 0.35; pointer-events: none;
+    }
+    .btn-continue.ready { opacity: 1; pointer-events: all; box-shadow: 0 4px 18px rgba(0,201,184,0.3); }
+    .btn-continue.ready:hover { background: #00B8A8; }
+
+    /* Contact section */
+    .contact-section {
+      flex: 1; padding: 28px; border-right: 1px solid rgba(255,255,255,0.08); overflow-y: auto;
+    }
+    .contact-section h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.25rem; font-weight: 800; color: var(--white);
+      margin-bottom: 6px; display: flex; align-items: center; gap: 10px;
+    }
+    .contact-sub { font-size: 0.8rem; color: var(--fog); margin-bottom: 24px; line-height: 1.5; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--fog); }
+    .form-input {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px; padding: 11px 13px;
+      font-size: 0.875rem; color: var(--white);
+      font-family: 'Inter', sans-serif; width: 100%;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .form-input::placeholder { color: rgba(255,255,255,0.2); }
+    .form-input:focus { outline: none; border-color: var(--wake); background: rgba(0,201,184,0.05); }
+    .riders-row { display: flex; gap: 8px; margin-top: 2px; }
+    .rider-btn {
+      flex: 1; padding: 10px 8px; border-radius: 8px; text-align: center;
+      font-size: 0.82rem; font-weight: 700;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.45); cursor: pointer; transition: all 0.18s;
+      font-family: 'Inter', sans-serif;
+    }
+    .rider-btn.selected { background: rgba(0,201,184,0.12); border-color: var(--wake); color: var(--wake); }
+    .form-checkbox-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 8px;
+    }
+    .form-checkbox { width: 17px; height: 17px; border-radius: 4px; flex-shrink: 0; cursor: pointer; accent-color: var(--wake); margin-top: 2px; }
+    .form-checkbox-label { font-size: 0.76rem; color: rgba(255,255,255,0.4); line-height: 1.5; }
+    .form-checkbox-label a { color: var(--wake); text-decoration: none; }
+
+    .btn-confirm {
+      width: 100%; padding: 14px;
+      background: var(--fire); color: var(--white);
+      border: none; border-radius: 8px;
+      font-weight: 800; font-size: 0.9rem;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.2s; margin-top: 14px;
+      box-shadow: 0 4px 18px rgba(255,86,53,0.3);
+    }
+    .btn-confirm:hover { background: var(--fire-dark); }
+    .btn-back-modal {
+      background: none; border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.45); padding: 11px;
+      border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all 0.2s; width: 100%; margin-top: 8px;
+    }
+    .btn-back-modal:hover { border-color: rgba(255,255,255,0.25); color: var(--white); }
+
+    /* Responsive modal */
+    @media (max-width: 740px) {
+      .modal { max-height: 96vh; border-radius: 14px; }
+      .step-panel.active { flex-direction: column; }
+      .cal-section { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .m-summary { width: 100%; }
+      .time-grid { grid-template-columns: repeat(3, 1fr); }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- URGENCY STRIP -->
+<div class="urgency">
+  🔥 High season — <strong>limited slots available this week.</strong> Don't miss your ride.
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">SOTO<span class="dot">.</span>JETS</a>
+  <a href="#packages" class="nav-book">Book Now ↗</a>
+</nav>
+
+<!-- ════════ HERO ════════ -->
+<section class="hero">
+  <div class="speed-lines"></div>
+
+  <!-- Wake geometry right side -->
+  <div class="wake-lines" aria-hidden="true">
+    <svg viewBox="0 0 600 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <!-- diagonal speed streaks -->
+      <line x1="700" y1="50"  x2="200" y2="800" stroke="rgba(0,201,184,0.08)" stroke-width="2"/>
+      <line x1="750" y1="0"   x2="300" y2="800" stroke="rgba(0,201,184,0.05)" stroke-width="1"/>
+      <line x1="650" y1="0"   x2="100" y2="800" stroke="rgba(0,87,168,0.1)"   stroke-width="3"/>
+      <line x1="600" y1="100" x2="50"  y2="900" stroke="rgba(0,201,184,0.06)" stroke-width="1.5"/>
+      <line x1="550" y1="0"   x2="0"   y2="700" stroke="rgba(0,87,168,0.06)"  stroke-width="2"/>
+      <!-- large arc — like a wave -->
+      <path d="M600,200 Q400,400 600,700" stroke="rgba(0,201,184,0.07)" stroke-width="80" fill="none"/>
+      <path d="M700,100 Q500,350 700,650" stroke="rgba(0,87,168,0.06)"  stroke-width="100" fill="none"/>
+      <!-- dots scatter -->
+      <circle cx="420" cy="150" r="3" fill="rgba(0,201,184,0.2)"/>
+      <circle cx="480" cy="300" r="2" fill="rgba(0,201,184,0.15)"/>
+      <circle cx="380" cy="450" r="4" fill="rgba(0,87,168,0.2)"/>
+      <circle cx="520" cy="550" r="2" fill="rgba(0,201,184,0.12)"/>
+      <circle cx="350" cy="650" r="3" fill="rgba(0,87,168,0.15)"/>
+    </svg>
+  </div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-tag">📍 Sotogrande Marina · Costa del Sol</div>
+      <h1>
+        FEEL<br>
+        THE<br>
+        <span class="line2">SPEED.</span>
+      </h1>
+      <p class="hero-sub">
+        Ride premium Yamaha jet skis on the Mediterranean.
+        Certified instructors, stunning coastal views, zero experience needed.
+      </p>
+      <div class="hero-ctas">
+        <a href="#packages" class="btn-fire">⚡ Book Your Ride Now</a>
+        <a href="#how-it-works" class="btn-ghost">▶ See How It Works</a>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-item">
+          <span class="proof-num" data-count="500">0<span class="accent">+</span></span>
+          <span class="proof-label">Happy Riders</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <span class="proof-num">4.9<span class="accent">★</span></span>
+          <span class="proof-label">Google Rating</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <span class="proof-num" data-count="30">0</span>
+          <span class="proof-label">Tours / Week</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <span class="proof-num">3</span>
+          <span class="proof-label">Experiences</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <svg class="hero-wave-bottom" viewBox="0 0 1440 70" fill="none" preserveAspectRatio="none">
+    <path d="M0,35 C480,70 960,0 1440,35 L1440,70 L0,70 Z" fill="white"/>
+  </svg>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.2L12 17l-6.2 3.9 2.4-7.2L2 9.2h7.6L12 2z" fill="#F5B700"/></svg>
+      4.9/5 Google Reviews
+    </div>
+    <div class="trust-item">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 1L9 9H1l6.5 4.7L5 21 12 16l7 5-2.5-7.3L22 9h-8L12 1z" fill="none" stroke="#00C9B8" stroke-width="1.8"/></svg>
+      Certified Professional Instructors
+    </div>
+    <div class="trust-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z" stroke="#00C9B8" stroke-width="1.8"/><path d="M16 3H8L6 7h12l-2-4z" stroke="#00C9B8" stroke-width="1.8"/></svg>
+      Latest Yamaha Fleet 2024/25
+    </div>
+    <div class="trust-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5.5 3.5 10.7 8 12 4.5-1.3 8-6.5 8-12V6l-8-4z" stroke="#00C9B8" stroke-width="1.8"/></svg>
+      Full Insurance Included
+    </div>
+    <div class="trust-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#00C9B8" stroke-width="1.8"/><path d="M12 6v6l4 2" stroke="#00C9B8" stroke-width="1.8" stroke-linecap="round"/></svg>
+      Instant Online Booking
+    </div>
+  </div>
+</div>
+
+<!-- ════════ PACKAGES ════════ -->
+<section class="packages" id="packages">
+  <div class="container">
+    <div class="packages-header reveal">
+      <span class="eyebrow">Choose Your Experience</span>
+      <h2 class="section-h2">Pick Your Ride.<br><em>Book in 60 Seconds.</em></h2>
+      <p class="section-sub">All packages include life vests, safety briefing, and certified instructor on water. No experience required.</p>
+    </div>
+
+    <div class="pkg-grid">
+
+      <!-- 30 MIN -->
+      <div class="pkg-card reveal reveal-d1">
+        <div class="pkg-tag">Starter</div>
+        <div class="pkg-name">30-Min Blast</div>
+        <p class="pkg-tagline">Pure adrenaline, straight to the point. Perfect for a quick thrill.</p>
+        <hr class="pkg-divider">
+        <div class="pkg-price"><span class="currency">€</span>79</div>
+        <p class="pkg-price-note">per jet ski · up to 2 riders</p>
+        <ul class="pkg-includes">
+          <li><span class="chk">✓</span> 30 real minutes on the water</li>
+          <li><span class="chk">✓</span> Up to 2 people per jet ski</li>
+          <li><span class="chk">✓</span> Life vests &amp; safety gear</li>
+          <li><span class="chk">✓</span> Certified instructor nearby</li>
+          <li><span class="chk">✓</span> Yamaha jet ski</li>
+        </ul>
+        <button class="btn-pkg btn-pkg-default" onclick="openModal('Adventure Jet Ski 30min', 80, '30 min')">Book 30-Min Blast →</button>
+      </div>
+
+      <!-- 1 HOUR — FEATURED -->
+      <div class="pkg-card featured reveal reveal-d2">
+        <div class="pkg-popular">🔥 Most Popular</div>
+        <div class="pkg-tag">Best Value</div>
+        <div class="pkg-name">1-Hour Ride</div>
+        <p class="pkg-tagline">Optimal sea conditions, maximum speed. The full Mediterranean experience.</p>
+        <hr class="pkg-divider">
+        <div class="pkg-price"><span class="currency">€</span>129</div>
+        <p class="pkg-price-note">per jet ski · up to 2 riders</p>
+        <ul class="pkg-includes">
+          <li><span class="chk">✓</span> 60 minutes on the water</li>
+          <li><span class="chk">✓</span> Up to 2 people per jet ski</li>
+          <li><span class="chk">✓</span> Life vests &amp; safety gear</li>
+          <li><span class="chk">✓</span> Certified instructor nearby</li>
+          <li><span class="chk">✓</span> Open sea access &amp; coastal views</li>
+          <li><span class="chk">✓</span> Latest Yamaha jet ski</li>
+        </ul>
+        <button class="btn-pkg btn-pkg-fire" onclick="openModal('Adventure Jet Ski 1 Hour', 130, '1 hour')">Book 1-Hour Ride →</button>
+      </div>
+
+      <!-- SAFARI -->
+      <div class="pkg-card reveal reveal-d3">
+        <div class="pkg-tag">Adventure Tour</div>
+        <div class="pkg-name">Safari Alcaidesa</div>
+        <p class="pkg-tagline">Guided coastal tour with marine wildlife, scenic views, and full-speed stretches.</p>
+        <hr class="pkg-divider">
+        <div class="pkg-price"><span class="currency">€</span>149</div>
+        <p class="pkg-price-note">per jet ski · up to 2 riders</p>
+        <ul class="pkg-includes">
+          <li><span class="chk">✓</span> ~90 min guided safari</li>
+          <li><span class="chk">✓</span> Up to 2 people per jet ski</li>
+          <li><span class="chk">✓</span> Life vests &amp; safety gear</li>
+          <li><span class="chk">✓</span> Expert guide leads the route</li>
+          <li><span class="chk">✓</span> Alcaidesa Beach destination</li>
+          <li><span class="chk">✓</span> Marine wildlife spotting</li>
+        </ul>
+        <button class="btn-pkg btn-pkg-default" onclick="openModal('Safari Jet Ski Alcaidesa', 150, '~90 min')">Book Safari →</button>
+      </div>
+
+    </div>
+    <p class="pkg-note reveal">💳 Refundable deposit up to €500 per jet ski · 130 kg combined weight limit · 18+ to drive (16+ with parental consent)</p>
+  </div>
+</section>
+
+<!-- ════════ HOW IT WORKS ════════ -->
+<section class="how" id="how-it-works">
+  <div class="container">
+    <div class="how-header reveal">
+      <span class="eyebrow">Super Simple Process</span>
+      <h2 class="section-h2">On the Water<br><em>in 3 Steps</em></h2>
+    </div>
+    <div class="how-steps">
+      <div class="step reveal reveal-d1">
+        <div class="step-num">1</div>
+        <h3>Choose &amp; Book Online</h3>
+        <p>Pick your package, choose your date and time, pay securely online. You get instant confirmation — no phone calls needed.</p>
+      </div>
+      <div class="step reveal reveal-d2">
+        <div class="step-num">2</div>
+        <h3>Show Up at the Marina</h3>
+        <p>Arrive at Sotogrande Marina at least 20 minutes before your slot. Bring your ID (passport or DNI) and a credit card.</p>
+      </div>
+      <div class="step reveal reveal-d3">
+        <div class="step-num">3</div>
+        <h3>Hit the Water &amp; Ride</h3>
+        <p>Quick safety briefing, life vest on, and you're off. Your certified instructor stays close. No experience? No problem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ WHY SOTOJETS ════════ -->
+<section class="why">
+  <div class="container">
+    <div class="why-header reveal">
+      <span class="eyebrow" style="color:var(--wake);">Why Sotojets</span>
+      <h2 class="section-h2">The #1 Jet Ski Experience<br>on the Costa del Sol</h2>
+      <p class="section-sub">Not just a rental — a full sea adventure built around your safety and your thrills.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-d1">
+        <div class="why-icon">🏅</div>
+        <h3>Certified Professionals</h3>
+        <p>All instructors are fully certified with years on these waters. You're in safe hands from the moment you arrive.</p>
+      </div>
+      <div class="why-card reveal reveal-d2">
+        <div class="why-icon">🛥️</div>
+        <h3>Latest Yamaha Fleet</h3>
+        <p>We only run the newest, most powerful Yamaha jet skis — fully maintained, technically inspected, ready for max speed.</p>
+      </div>
+      <div class="why-card reveal reveal-d1">
+        <div class="why-icon">📍</div>
+        <h3>Unbeatable Location</h3>
+        <p>Sotogrande Marina is one of the best-positioned spots on the Costa del Sol. Calm waters in the morning, open sea all day.</p>
+      </div>
+      <div class="why-card reveal reveal-d2">
+        <div class="why-icon">🛡️</div>
+        <h3>Safety First, Always</h3>
+        <p>Full insurance included, life vests for every rider, and a comprehensive safety briefing before every single session.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ REVIEWS ════════ -->
+<section class="reviews">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <span class="eyebrow">Real People, Real Rides</span>
+      <h2 class="section-h2">What Our Riders Say</h2>
+      <div class="reviews-meta">
+        <span class="stars">★★★★★</span>
+        <span>4.9 out of 5 · 100+ Google Reviews</span>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card reveal reveal-d1">
+        <div class="review-stars"><span class="stars" style="font-size:0.9rem;">★★★★★</span></div>
+        <p class="review-quote">Absolutely incredible experience! The instructor was fantastic and we felt completely safe the whole time. The 1-hour ride was worth every penny. We'll definitely be back next summer.</p>
+        <div class="reviewer">
+          <div class="reviewer-av" style="background: linear-gradient(135deg, #0057A8, #00C9B8);">S</div>
+          <div>
+            <div class="reviewer-name">Sarah M.</div>
+            <div class="reviewer-sub">Gibraltar · Google Review</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-d2">
+        <div class="review-stars"><span class="stars" style="font-size:0.9rem;">★★★★★</span></div>
+        <p class="review-quote">Did the Alcaidesa safari and it was the highlight of our whole holiday. Amazing scenery, spotted dolphins, and the guides were so friendly and professional. Unreal experience!</p>
+        <div class="reviewer">
+          <div class="reviewer-av" style="background: linear-gradient(135deg, #FF5635, #F5B700);">J</div>
+          <div>
+            <div class="reviewer-name">James R.</div>
+            <div class="reviewer-sub">Marbella · Google Review</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-d3">
+        <div class="review-stars"><span class="stars" style="font-size:0.9rem;">★★★★★</span></div>
+        <p class="review-quote">Fuimos en familia y todos quedamos encantados. Muy profesionales, equipos en perfecto estado y una experiencia que no olvidaremos. ¡Volvemos el verano que viene sin dudarlo!</p>
+        <div class="reviewer">
+          <div class="reviewer-av" style="background: linear-gradient(135deg, #6B21A8, #0057A8);">M</div>
+          <div>
+            <div class="reviewer-name">María G.</div>
+            <div class="reviewer-sub">Málaga · Google Review</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FAQ ════════ -->
+<section class="faq">
+  <div class="container">
+    <div class="faq-header reveal">
+      <span class="eyebrow">Before You Book</span>
+      <h2 class="section-h2">Frequent Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q">What documentation do I need to bring? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Bring a valid Passport or National ID (DNI) and a credit card. A refundable deposit of up to €500 per jet ski may be charged at check-in. This is returned in full at the end of your session if there's no damage.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">What is the minimum age? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Riders must be 18+ to drive a jet ski, or 16+ with written parental consent. Passengers must be at least 10 years old (ages 8–10 are at Sotojets' discretion).</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">How many people fit on one jet ski? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Maximum 2 people per jet ski, with a combined weight limit of 130 kg. Pricing is per jet ski — not per person — making it great value for couples or friends sharing a ride.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">When should I arrive at the marina? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Arrive at Sotogrande Marina at least 20 minutes before your scheduled start time. Latecomers will be moved to the next available slot, so plan ahead!</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">Do I need previous jet ski experience? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">Zero experience required. Our certified instructors give you a full safety and technique briefing before you set off, and they stay close by throughout your session. Absolute beginners are very welcome.</div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q">What happens if I cause damage? <span class="faq-toggle">+</span></div>
+        <div class="faq-a">The deposit (up to €500) covers repair costs from accidental damage. If damage exceeds this amount, the rider is responsible for the balance. Riders who behave irresponsibly will be removed from the water immediately with no refund.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ FINAL CTA ════════ -->
+<section class="final">
+  <div class="final-inner">
+    <span class="eyebrow" style="color:var(--wake);text-align:center;display:block;margin-bottom:16px;">Ready?</span>
+    <h2>DON'T JUST<br>WATCH THE SEA.<br><em>CONQUER IT.</em></h2>
+    <p>Slots fill up fast in high season. Lock in your jet ski experience now and make this the memory of your trip.</p>
+    <div class="final-btns">
+      <button onclick="openModal('Adventure Jet Ski 1 Hour', 130, '1 hour')"
+         class="btn-fire" style="font-size:1rem; padding:18px 36px; border:none; cursor:pointer; font-family:'Inter',sans-serif; border-radius:6px;">
+        ⚡ Reserve My Spot
+      </button>
+      <a href="tel:+34XXXXXXXXX" class="btn-call">📞 Call Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Sotojets · Sotogrande Marina, Cádiz, Spain &nbsp;·&nbsp; <a href="https://sotojets.es/politica-de-cookies/">Cookie Policy</a> &nbsp;·&nbsp; <a href="https://sotojets.es/">sotojets.es</a></p>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/34XXXXXXXXX?text=Hi!%20I'd%20like%20to%20book%20a%20jet%20ski%20at%20Sotojets."
+   class="float-wa" target="_blank" title="Chat on WhatsApp" aria-label="WhatsApp">
+  <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.464 3.488"/></svg>
+</a>
+
+<!-- MOBILE STICKY BAR -->
+<button class="mobile-bar" onclick="openModal('Adventure Jet Ski 1 Hour', 130, '1 hour')">⚡ Book Your Jet Ski Now →</button>
+
+<!-- ════════════════════════════════════════════
+     BOOKING MODAL
+════════════════════════════════════════════ -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal">
+    <div class="modal-line"><div class="modal-line-fill" id="progressLine"></div></div>
+    <div class="modal-progress">
+      <div class="progress-steps">
+        <div class="p-step active" id="pStep1">
+          <div class="p-num">1</div><span>Date &amp; time</span>
+        </div>
+        <div class="p-arrow"></div>
+        <div class="p-step" id="pStep2">
+          <div class="p-num">2</div><span>Contact details</span>
+        </div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- STEP 1 -->
+      <div class="step-panel active" id="step1">
+        <div class="cal-section">
+          <h2><span class="step-dot">1</span> Choose a date and time</h2>
+          <div class="calendar-nav">
+            <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
+            <span class="cal-month" id="calMonthLabel"></span>
+            <button class="cal-nav-btn" onclick="changeMonth(1)">›</button>
+          </div>
+          <div class="cal-grid" id="calGrid">
+            <div class="cal-day-name">Mon</div><div class="cal-day-name">Tue</div>
+            <div class="cal-day-name">Wed</div><div class="cal-day-name">Thu</div>
+            <div class="cal-day-name">Fri</div><div class="cal-day-name">Sat</div>
+            <div class="cal-day-name">Sun</div>
+          </div>
+          <div id="timeSection" style="display:none;">
+            <div class="time-header" id="timeHeader">Available times</div>
+            <div class="time-grid" id="timeGrid"></div>
+          </div>
+        </div>
+        <div class="m-summary">
+          <div class="m-summary-title">Summary</div>
+          <div class="m-pkg">
+            <div class="m-pkg-name" id="sumPkgName">—</div>
+            <div class="m-pkg-detail" id="sumPkgDetail">Sotogrande Marina</div>
+          </div>
+          <div class="m-row"><span class="lbl">Price</span><span class="val" id="sumPrice">—</span></div>
+          <div class="m-total"><span class="lbl">Total</span><span class="val" id="sumTotal">—</span></div>
+          <div class="m-sel" id="sumSel" style="display:none;">
+            <span class="sl">📅 Date</span><span class="sv" id="selDate">—</span>
+            <br><br>
+            <span class="sl">⏰ Time</span><span class="sv" id="selTime">—</span>
+          </div>
+          <button class="btn-continue" id="btnContinue" onclick="goStep2()">Continue →</button>
+          <div class="m-note">No payment now. You'll confirm on the next screen.</div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step-panel" id="step2">
+        <div class="contact-section">
+          <h2><span class="step-dot">2</span> Your details</h2>
+          <p class="contact-sub">Almost there — just a few details to confirm your booking.</p>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">First name *</label>
+              <input type="text" class="form-input" placeholder="Sarah" id="fName">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last name *</label>
+              <input type="text" class="form-input" placeholder="Miller" id="fLast">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Email address *</label>
+              <input type="email" class="form-input" placeholder="sarah@email.com" id="fEmail">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Phone number *</label>
+              <input type="tel" class="form-input" placeholder="+34 600 000 000" id="fPhone">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Number of riders</label>
+              <div class="riders-row">
+                <button class="rider-btn selected" onclick="selectRiders(this)">1 rider</button>
+                <button class="rider-btn" onclick="selectRiders(this)">2 riders</button>
+              </div>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Special requests <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--fog);font-size:0.68rem;">(optional)</span></label>
+              <input type="text" class="form-input" placeholder="e.g. celebrating a birthday, beginner riders…" id="fNotes">
+            </div>
+          </div>
+          <div class="form-checkbox-row">
+            <input type="checkbox" class="form-checkbox" id="fTerms">
+            <label class="form-checkbox-label" for="fTerms">
+              I accept the <a href="https://sotojets.es" target="_blank">terms &amp; conditions</a> and confirm I meet the age and weight requirements. I understand a refundable deposit up to €500 is collected on arrival.
+            </label>
+          </div>
+        </div>
+        <div class="m-summary">
+          <div class="m-summary-title">Summary</div>
+          <div class="m-pkg">
+            <div class="m-pkg-name" id="sumPkgName2">—</div>
+            <div class="m-pkg-detail" id="sumPkgDetail2">Sotogrande Marina</div>
+          </div>
+          <div class="m-row"><span class="lbl">Price</span><span class="val" id="sumPrice2">—</span></div>
+          <div class="m-total"><span class="lbl">Total</span><span class="val" id="sumTotal2">—</span></div>
+          <div class="m-sel" id="sumSel2" style="display:none;">
+            <span class="sl">📅 Date &amp; Time</span>
+            <span class="sv" id="selDateTime2">—</span>
+          </div>
+          <button class="btn-confirm" onclick="confirmBooking()">⚡ Confirm Booking</button>
+          <button class="btn-back-modal" onclick="goStep1()">← Back</button>
+          <div class="m-note">No payment required now. Payment &amp; deposit collected on arrival.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Nav scroll ──
+  const nav = document.getElementById('nav');
+  const urgencyEl = document.querySelector('.urgency');
+
+  function setNavTop() {
+    const h = urgencyEl.offsetHeight;
+    nav.style.top = h + 'px';
+  }
+  setNavTop();
+  window.addEventListener('resize', setNavTop);
+
+  window.addEventListener('scroll', () => {
+    const h = urgencyEl.offsetHeight;
+    if (window.scrollY > h + 10) {
+      nav.classList.add('scrolled');
+      nav.style.top = '0';
+    } else {
+      nav.classList.remove('scrolled');
+      nav.style.top = h + 'px';
+    }
+  });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── Scroll reveal ──
+  const ro = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  // ── Counter animation ──
+  const co = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = +el.dataset.count;
+      const hasSuffix = el.innerHTML.includes('<span');
+      const suffix = hasSuffix ? '<span class="accent">+</span>' : '';
+      let cur = 0;
+      const step = Math.ceil(target / 50);
+      const tick = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.innerHTML = cur + suffix;
+        if (cur >= target) clearInterval(tick);
+      }, 35);
+      co.unobserve(el);
+    });
+  });
+  document.querySelectorAll('[data-count]').forEach(el => co.observe(el));
+
+  // ── Smooth anchor offset (for fixed nav) ──
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        const offset = nav.offsetHeight + 16;
+        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      }
+    });
+  });
+
+  /* ════════════════════════════════════════════
+     BOOKING MODAL JS
+  ════════════════════════════════════════════ */
+  let mPkg = { name: '', price: 0, duration: '' };
+  let selDate = null;
+  let selTime = null;
+  let calYear, calMonth;
+
+  const TODAY = new Date(); TODAY.setHours(0,0,0,0);
+  const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const TIMES  = ['9:00 AM','9:30 AM','10:00 AM','10:30 AM','11:00 AM','11:30 AM','12:00 PM','12:30 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','4:30 PM','5:00 PM'];
+
+  function openModal(name, price, duration) {
+    mPkg = { name, price, duration };
+    selDate = null; selTime = null;
+    calYear = TODAY.getFullYear(); calMonth = TODAY.getMonth();
+
+    ['','2'].forEach(s => {
+      document.getElementById('sumPkgName' + s).textContent  = name;
+      document.getElementById('sumPkgDetail' + s).textContent = duration + ' · Sotogrande Marina';
+      document.getElementById('sumPrice' + s).textContent    = '€' + price + '.00';
+      document.getElementById('sumTotal' + s).textContent    = '€' + price + '.00';
+    });
+
+    renderCalendar();
+    document.getElementById('timeSection').style.display = 'none';
+    document.getElementById('sumSel').style.display      = 'none';
+    document.getElementById('sumSel2').style.display     = 'none';
+    document.getElementById('btnContinue').classList.remove('ready');
+    goStep1(true);
+    document.body.style.overflow = 'hidden';
+    document.getElementById('modalOverlay').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function renderCalendar() {
+    document.getElementById('calMonthLabel').textContent = MONTHS[calMonth] + ' ' + calYear;
+    const grid = document.getElementById('calGrid');
+    while (grid.children.length > 7) grid.removeChild(grid.lastChild);
+
+    const firstDay  = new Date(calYear, calMonth, 1).getDay();
+    const offset    = firstDay === 0 ? 6 : firstDay - 1;
+    const daysInMo  = new Date(calYear, calMonth + 1, 0).getDate();
+
+    for (let i = 0; i < offset; i++) {
+      const el = document.createElement('div'); el.className = 'cal-day empty'; grid.appendChild(el);
+    }
+    for (let d = 1; d <= daysInMo; d++) {
+      const date = new Date(calYear, calMonth, d);
+      const el = document.createElement('div');
+      el.textContent = d < 10 ? '0' + d : d;
+      el.className = 'cal-day';
+      if (date < TODAY) {
+        el.classList.add('past');
+      } else {
+        if (date.getTime() === TODAY.getTime()) el.classList.add('today');
+        if (selDate && date.toDateString() === selDate.toDateString()) el.classList.add('selected');
+        el.onclick = () => pickDate(date, el);
+      }
+      grid.appendChild(el);
+    }
+  }
+
+  function changeMonth(dir) {
+    calMonth += dir;
+    if (calMonth > 11) { calMonth = 0; calYear++; }
+    if (calMonth < 0)  { calMonth = 11; calYear--; }
+    renderCalendar();
+  }
+
+  function pickDate(date, el) {
+    selDate = date; selTime = null;
+    document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('selected'));
+    el.classList.add('selected');
+
+    const label = date.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+    document.getElementById('timeHeader').textContent = 'Available times on ' + label;
+
+    const tg = document.getElementById('timeGrid'); tg.innerHTML = '';
+    TIMES.forEach(t => {
+      const btn = document.createElement('button');
+      btn.className = 'time-slot'; btn.textContent = t;
+      btn.onclick = () => pickTime(t, btn);
+      tg.appendChild(btn);
+    });
+    document.getElementById('timeSection').style.display = 'block';
+    updateContinue();
+  }
+
+  function pickTime(time, el) {
+    selTime = time;
+    document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+
+    const ds = selDate.toLocaleDateString('en-GB', { weekday:'short', day:'numeric', month:'short' });
+    document.getElementById('selDate').textContent    = ds;
+    document.getElementById('selTime').textContent    = time;
+    document.getElementById('sumSel').style.display   = 'block';
+    document.getElementById('selDateTime2').textContent = ds + ' · ' + time;
+    document.getElementById('sumSel2').style.display  = 'block';
+    updateContinue();
+  }
+
+  function updateContinue() {
+    document.getElementById('btnContinue').classList.toggle('ready', !!(selDate && selTime));
+  }
+
+  function goStep1(force) {
+    document.getElementById('step1').classList.add('active');
+    document.getElementById('step2').classList.remove('active');
+    document.getElementById('pStep1').classList.add('active');
+    document.getElementById('pStep1').classList.remove('done');
+    document.getElementById('pStep2').classList.remove('active');
+    document.getElementById('progressLine').style.width = '50%';
+  }
+
+  function goStep2() {
+    if (!selDate || !selTime) return;
+    document.getElementById('step1').classList.remove('active');
+    document.getElementById('step2').classList.add('active');
+    document.getElementById('pStep1').classList.remove('active');
+    document.getElementById('pStep1').classList.add('done');
+    document.getElementById('pStep2').classList.add('active');
+    document.getElementById('progressLine').style.width = '100%';
+  }
+
+  function selectRiders(el) {
+    document.querySelectorAll('.rider-btn').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function confirmBooking() {
+    const name  = document.getElementById('fName').value.trim();
+    const last  = document.getElementById('fLast').value.trim();
+    const email = document.getElementById('fEmail').value.trim();
+    const phone = document.getElementById('fPhone').value.trim();
+    const terms = document.getElementById('fTerms').checked;
+
+    if (!name || !last || !email || !phone) { alert('Please fill in all required fields.'); return; }
+    if (!email.includes('@')) { alert('Please enter a valid email address.'); return; }
+    if (!terms) { alert('Please accept the terms & conditions to continue.'); return; }
+
+    const ds = selDate ? selDate.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}) : '';
+    document.getElementById('modal').innerHTML = `
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 32px;text-align:center;min-height:340px;gap:0;">
+        <div style="width:60px;height:60px;border-radius:50%;background:rgba(0,201,184,0.12);border:2px solid var(--wake);display:flex;align-items:center;justify-content:center;font-size:1.6rem;margin-bottom:22px;">✓</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:900;color:#fff;margin-bottom:8px;">You're confirmed!</div>
+        <div style="font-size:0.85rem;color:#7A8FA6;max-width:340px;line-height:1.7;margin-bottom:26px;">
+          Confirmation sent to <strong style="color:#fff;">${email}</strong>.<br>
+          Arrive at Sotogrande Marina 20 min before your slot.
+        </div>
+        <div style="background:rgba(0,201,184,0.08);border:1px solid rgba(0,201,184,0.2);border-radius:10px;padding:18px 24px;margin-bottom:26px;text-align:left;min-width:260px;">
+          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--wake);margin-bottom:10px;">Booking Summary</div>
+          <div style="font-size:0.85rem;color:#fff;font-weight:600;margin-bottom:3px;">${mPkg.name}</div>
+          <div style="font-size:0.76rem;color:#7A8FA6;">${ds} · ${selTime}</div>
+          <div style="font-size:0.76rem;color:#7A8FA6;margin-top:2px;">${name} ${last}</div>
+          <div style="font-size:1.2rem;font-weight:800;color:var(--wake);margin-top:12px;font-family:'Barlow Condensed',sans-serif;">Total: €${mPkg.price}.00</div>
+        </div>
+        <button onclick="closeModal()" style="background:var(--fire);color:white;border:none;padding:13px 32px;border-radius:8px;font-weight:700;font-size:0.9rem;cursor:pointer;font-family:'Inter',sans-serif;">Done ✓</button>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+</html>
