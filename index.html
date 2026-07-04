@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -640,29 +641,125 @@
     }
 
     /* ─── RESPONSIVE ─── */
+
+    /* ── Tablet ── */
     @media (max-width: 900px) {
-      .pkg-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+      .pkg-grid { grid-template-columns: 1fr; max-width: 440px; margin: 0 auto; }
       .pkg-card.featured { transform: none; }
       .why-grid { grid-template-columns: repeat(2, 1fr); }
-      .reviews-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .reviews-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
     }
 
+    /* ── Mobile ── */
     @media (max-width: 640px) {
-      .hero h1 { font-size: 3.4rem; }
-      .how-steps { grid-template-columns: 1fr; gap: 32px; }
+      /* Container */
+      .container { padding: 0 16px; }
+
+      /* Urgency */
+      .urgency { font-size: 0.74rem; padding: 8px 14px; line-height: 1.4; }
+
+      /* Nav */
+      nav { padding: 12px 16px; }
+      nav.scrolled { padding: 10px 16px; }
+      .nav-logo { font-size: 1.35rem; }
+      .nav-book { padding: 8px 16px; font-size: 0.78rem; }
+
+      /* Hero */
+      .hero { padding-top: 56px; min-height: 100svh; }
+      .hero-inner { padding: 20px 16px 32px; }
+      .hero-tag { font-size: 0.64rem; padding: 4px 11px; margin-bottom: 16px; letter-spacing: 1.5px; }
+      .hero h1 { font-size: clamp(2.6rem, 13vw, 3.6rem); margin-bottom: 14px; letter-spacing: -0.5px; }
+      .hero-sub { font-size: 0.88rem; line-height: 1.65; margin-bottom: 26px; }
+      .hero-ctas { flex-direction: column; gap: 10px; margin-bottom: 36px; }
+      .btn-fire  { justify-content: center; padding: 15px 24px; font-size: 0.9rem; }
+      .btn-ghost { justify-content: center; padding: 14px 24px; font-size: 0.88rem; }
+      .hero-proof { gap: 0; justify-content: space-between; }
+      .proof-item { flex: 1; text-align: center; }
+      .proof-num { font-size: 1.6rem; }
+      .proof-label { font-size: 0.58rem; letter-spacing: 0.8px; }
+      .proof-divider { width: 1px; height: 28px; align-self: center; }
+
+      /* Trust strip */
+      .trust-strip { padding: 14px 0; }
+      .trust-item { padding: 0 16px; font-size: 0.74rem; gap: 6px; }
+
+      /* Sections global */
+      .packages  { padding: 48px 0; }
+      .how       { padding: 48px 0; }
+      .why       { padding: 48px 0; }
+      .reviews   { padding: 48px 0; }
+      .faq       { padding: 48px 0; }
+      .final     { padding: 56px 0; }
+
+      /* Packages */
+      .packages-header { margin-bottom: 32px; }
+      .packages-header .section-sub { font-size: 0.875rem; margin-top: 10px; }
+      .pkg-grid { max-width: 100%; }
+      .pkg-card { padding: 24px 18px; border-radius: 10px; }
+      .pkg-tag  { font-size: 0.6rem; }
+      .pkg-name { font-size: 1.5rem; }
+      .pkg-tagline { font-size: 0.8rem; margin-bottom: 16px; }
+      .pkg-price { font-size: 2.4rem; }
+      .pkg-price .currency { font-size: 1rem; margin-top: 6px; }
+      .pkg-price-note { font-size: 0.68rem; margin-bottom: 16px; }
+      .pkg-includes li { font-size: 0.8rem; padding: 5px 0; }
+      .pkg-note { font-size: 0.7rem; padding: 0 16px; margin-top: 20px; }
+
+      /* How it works */
+      .how-header { margin-bottom: 32px; }
+      .how-steps { grid-template-columns: 1fr; gap: 24px; }
       .how-steps::before { display: none; }
-      .why-grid { grid-template-columns: 1fr; }
+      .step-num { width: 46px; height: 46px; font-size: 1.2rem; margin-bottom: 14px; }
+      .step h3 { font-size: 1rem; }
+      .step p  { font-size: 0.82rem; }
+
+      /* Why us */
+      .why-header { margin-bottom: 32px; }
+      .why-grid { grid-template-columns: 1fr; gap: 10px; }
+      .why-card { padding: 20px 18px; border-radius: 10px; }
+      .why-icon { width: 42px; height: 42px; font-size: 1.2rem; margin-bottom: 12px; }
+      .why-card h3 { font-size: 0.95rem; }
+      .why-card p  { font-size: 0.8rem; }
+
+      /* Reviews */
+      .reviews-header { margin-bottom: 32px; }
+      .review-card { padding: 20px 16px; }
+      .review-quote { font-size: 0.83rem; }
+      .reviewer-name { font-size: 0.83rem; }
+      .reviews-grid { max-width: 100%; }
+
+      /* FAQ */
+      .faq-header { margin-bottom: 28px; }
+      .faq-q { padding: 15px 16px; font-size: 0.84rem; gap: 12px; }
+      .faq-a  { font-size: 0.82rem; }
+      .faq-item.open .faq-a { padding: 0 16px 15px; }
+      .faq-toggle { width: 24px; height: 24px; font-size: 1rem; flex-shrink: 0; }
+
+      /* Final CTA */
+      .final h2 { letter-spacing: -0.5px; }
+      .final p  { font-size: 0.875rem; }
+      .final-btns { flex-direction: column; align-items: center; gap: 10px; }
+      .btn-call { width: 100%; max-width: 280px; justify-content: center; }
+
+      /* Floating */
       .mobile-bar { display: block; }
-      .float-wa { bottom: 68px; }
-      .packages, .how, .why, .reviews, .faq { padding: 60px 0; }
-      .final { padding: 72px 0; }
+      .float-wa   { bottom: 68px; right: 14px; width: 48px; height: 48px; font-size: 1.3rem; }
+
+      /* Section headings */
+      .section-h2 { font-size: clamp(1.7rem, 7vw, 2.4rem); }
+      .section-sub { font-size: 0.875rem; }
+      .eyebrow { font-size: 0.66rem; }
     }
 
-    @media (max-width: 480px) {
-      .hero-proof { gap: 20px; }
+    /* ── Small mobile ── */
+    @media (max-width: 390px) {
+      .hero h1 { font-size: 2.5rem; }
+      .proof-num { font-size: 1.4rem; }
       .proof-divider { display: none; }
-      .hero-ctas { flex-direction: column; }
-      .btn-fire, .btn-ghost { justify-content: center; }
+      .hero-proof { justify-content: space-around; gap: 4px; }
+      .pkg-card { padding: 20px 14px; }
+      .pkg-price { font-size: 2.2rem; }
+      .nav-book { padding: 7px 12px; font-size: 0.74rem; }
     }
 
     /* ══════════════════════════════════════════
@@ -910,15 +1007,109 @@
     }
     .btn-back-modal:hover { border-color: rgba(255,255,255,0.25); color: var(--white); }
 
-    /* Responsive modal */
+    /* ── Modal responsive — bottom sheet on mobile ── */
     @media (max-width: 740px) {
-      .modal { max-height: 96vh; border-radius: 14px; }
-      .step-panel.active { flex-direction: column; }
-      .cal-section { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
-      .m-summary { width: 100%; }
-      .time-grid { grid-template-columns: repeat(3, 1fr); }
-      .form-grid { grid-template-columns: 1fr; }
+      /* Bottom sheet pattern */
+      .modal-overlay { padding: 0; align-items: flex-end; }
+      .modal {
+        border-radius: 18px 18px 0 0;
+        max-height: 90vh;
+        transform: translateY(100%);
+      }
+      .modal-overlay.open .modal { transform: translateY(0); }
+
+      /* Drag handle hint */
+      .modal-line { height: 4px; background: transparent; }
+      .modal-line::before {
+        content: '';
+        display: block;
+        width: 36px; height: 4px;
+        background: rgba(255,255,255,0.18);
+        border-radius: 4px;
+        margin: 8px auto 0;
+      }
+      .modal-line-fill { display: none; }
+
+      /* Progress header */
+      .modal-progress { padding: 12px 16px; }
+      .p-step span { font-size: 0.75rem; }
+      .p-arrow { width: 20px; margin: 0 6px; }
+      .p-num { width: 22px; height: 22px; font-size: 0.72rem; }
+
+      /* Step panels stack vertically */
+      .step-panel.active { flex-direction: column; overflow-y: auto; }
+
+      /* Calendar section */
+      .cal-section {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        padding: 18px 16px 16px;
+      }
+      .cal-section h2 { font-size: 1.05rem; margin-bottom: 16px; }
+      .calendar-nav { margin-bottom: 12px; }
+      .cal-month { font-size: 1rem; }
+      .cal-day { padding: 8px 2px; font-size: 0.8rem; border-radius: 6px; }
+      .cal-day-name { font-size: 0.6rem; padding: 4px 0; }
+      .cal-grid { gap: 3px; margin-bottom: 18px; }
+      .time-header { font-size: 0.66rem; margin-bottom: 10px; }
+      .time-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+      .time-slot { padding: 9px 4px; font-size: 0.76rem; border-radius: 6px; }
+
+      /* Summary sidebar becomes footer strip */
+      .m-summary {
+        width: 100%;
+        padding: 14px 16px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0;
+        align-items: center;
+        background: rgba(0,0,0,0.2);
+        border-top: 1px solid rgba(255,255,255,0.08);
+      }
+      .m-summary-title { display: none; }
+      .m-pkg { padding: 0; border-bottom: none; flex: 1; min-width: 100%; margin-bottom: 10px; }
+      .m-pkg-name { font-size: 0.82rem; }
+      .m-pkg-detail { font-size: 0.7rem; }
+      .m-row { border-bottom: none; padding: 0; }
+      .m-row .lbl { display: none; }
+      .m-row .val { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+      .m-total { padding: 0; flex: 0; }
+      .m-total .lbl { display: none; }
+      .m-total .val { font-size: 1.4rem; margin-right: 12px; }
+      .m-sel { display: none !important; }
+      .m-note { display: none; }
+      .btn-continue {
+        margin-top: 0; flex: 1;
+        padding: 12px; font-size: 0.85rem;
+      }
+
+      /* Contact section */
+      .contact-section {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        padding: 18px 16px 16px;
+      }
+      .contact-section h2 { font-size: 1.05rem; margin-bottom: 4px; }
+      .contact-sub { font-size: 0.76rem; margin-bottom: 18px; }
+      .form-grid { grid-template-columns: 1fr; gap: 11px; }
       .form-group.full { grid-column: 1; }
+      .form-input { padding: 10px 12px; font-size: 0.83rem; }
+      .form-label { font-size: 0.64rem; }
+      .form-checkbox-label { font-size: 0.72rem; }
+      .btn-confirm { padding: 13px; font-size: 0.875rem; margin-top: 10px; }
+      .btn-back-modal { padding: 10px; font-size: 0.78rem; margin-top: 6px; }
+
+      /* Step 2 summary — same strip treatment */
+      #step2 .m-summary {
+        flex-direction: row; flex-wrap: wrap; align-items: center;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .time-grid { grid-template-columns: repeat(2, 1fr); }
+      .cal-day { font-size: 0.75rem; padding: 7px 1px; }
+      .modal-progress { padding: 10px 14px; }
+      .p-step span { display: none; }
     }
   </style>
 </head>
@@ -1647,3 +1838,17 @@
 
 </body>
 </html>
+
+
+puedes actualizar este html en el index del repo de jetsky-sotogrande y commit los changues?
+
+Ran
+a command
+Voy a actualizar el index.html con el contenido que has pasado.
+
+Read
+index.html
+Ya he leído el archivo actual. Ahora escribo el nuevo contenido completo.
+
+
+
