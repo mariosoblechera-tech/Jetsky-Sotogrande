@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -159,14 +158,45 @@
       to   { opacity: 1; }
     }
 
-    /* Geometric wake lines right side */
-    .wake-lines {
+    /* Geometric wake lines right side — replaced by photo */
+    .hero-photo {
       position: absolute;
-      right: 0; top: 0; bottom: 0;
-      width: 50%;
+      top: 0; right: 0; bottom: 0;
+      width: 58%;
       pointer-events: none;
+      overflow: hidden;
     }
-    .wake-lines svg { position: absolute; right: 0; top: 0; height: 100%; width: 100%; }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 35% center;
+      opacity: 0.9;
+      display: block;
+    }
+    /* Fade: dark from left, photo shows on right */
+    .hero-photo::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(
+        90deg,
+        var(--ink) 0%,
+        rgba(6,28,48,0.85) 15%,
+        rgba(6,28,48,0.35) 45%,
+        rgba(6,28,48,0.1) 100%
+      );
+    }
+    /* Top + bottom vignette */
+    .hero-photo::after {
+      content: '';
+      position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(
+        180deg,
+        rgba(6,28,48,0.55) 0%,
+        transparent 18%,
+        transparent 65%,
+        rgba(6,28,48,0.7) 100%
+      );
+    }
 
     /* Floating wave SVG bottom */
     .hero-wave-bottom {
@@ -175,8 +205,10 @@
 
     .hero-inner {
       position: relative; z-index: 10;
-      padding: 0 28px;
-      max-width: 680px; margin-left: auto; margin-right: auto;
+      padding: 0 0 0 4px;
+      max-width: 520px;
+      margin-left: 0;
+      margin-right: auto;
     }
 
     .hero-tag {
@@ -667,6 +699,17 @@
       /* Hero */
       .hero { padding-top: 56px; min-height: 100svh; }
       .hero-inner { padding: 20px 16px 32px; }
+      /* Photo: full-bleed background on mobile */
+      .hero-photo { width: 100%; }
+      .hero-photo img { opacity: 0.4; }
+      .hero-photo::before {
+        background: linear-gradient(
+          180deg,
+          rgba(6,28,48,0.8) 0%,
+          rgba(6,28,48,0.4) 40%,
+          rgba(6,28,48,0.8) 100%
+        );
+      }
       .hero-tag { font-size: 0.64rem; padding: 4px 11px; margin-bottom: 16px; letter-spacing: 1.5px; }
       .hero h1 { font-size: clamp(2.6rem, 13vw, 3.6rem); margin-bottom: 14px; letter-spacing: -0.5px; }
       .hero-sub { font-size: 0.88rem; line-height: 1.65; margin-bottom: 26px; }
@@ -1130,25 +1173,15 @@
 <section class="hero">
   <div class="speed-lines"></div>
 
-  <!-- Wake geometry right side -->
-  <div class="wake-lines" aria-hidden="true">
-    <svg viewBox="0 0 600 800" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-      <!-- diagonal speed streaks -->
-      <line x1="700" y1="50"  x2="200" y2="800" stroke="rgba(0,201,184,0.08)" stroke-width="2"/>
-      <line x1="750" y1="0"   x2="300" y2="800" stroke="rgba(0,201,184,0.05)" stroke-width="1"/>
-      <line x1="650" y1="0"   x2="100" y2="800" stroke="rgba(0,87,168,0.1)"   stroke-width="3"/>
-      <line x1="600" y1="100" x2="50"  y2="900" stroke="rgba(0,201,184,0.06)" stroke-width="1.5"/>
-      <line x1="550" y1="0"   x2="0"   y2="700" stroke="rgba(0,87,168,0.06)"  stroke-width="2"/>
-      <!-- large arc — like a wave -->
-      <path d="M600,200 Q400,400 600,700" stroke="rgba(0,201,184,0.07)" stroke-width="80" fill="none"/>
-      <path d="M700,100 Q500,350 700,650" stroke="rgba(0,87,168,0.06)"  stroke-width="100" fill="none"/>
-      <!-- dots scatter -->
-      <circle cx="420" cy="150" r="3" fill="rgba(0,201,184,0.2)"/>
-      <circle cx="480" cy="300" r="2" fill="rgba(0,201,184,0.15)"/>
-      <circle cx="380" cy="450" r="4" fill="rgba(0,87,168,0.2)"/>
-      <circle cx="520" cy="550" r="2" fill="rgba(0,201,184,0.12)"/>
-      <circle cx="350" cy="650" r="3" fill="rgba(0,87,168,0.15)"/>
-    </svg>
+  <!-- Real jet ski photo — right panel -->
+  <div class="hero-photo" aria-hidden="true">
+    <img
+      src="https://images.unsplash.com/photo-1755566981083-5e54b2915148?w=1400&q=85&auto=format&fit=crop"
+      alt="Jet ski action Sotogrande"
+      loading="eager"
+      fetchpriority="high"
+      onerror="this.style.display='none'"
+    >
   </div>
 
   <div class="container">
@@ -1838,6 +1871,3 @@
 
 </body>
 </html>
-
-
-
