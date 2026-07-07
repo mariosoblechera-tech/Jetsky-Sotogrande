@@ -167,10 +167,11 @@
       pointer-events: none;
       overflow: hidden;
     }
-    .hero-photo img {
+    .hero-photo img,
+    .hero-photo video {
       width: 100%; height: 100%;
       object-fit: cover;
-      object-position: 35% center;
+      object-position: center 30%;
       opacity: 0.9;
       display: block;
     }
@@ -700,7 +701,7 @@
       .how-steps { grid-template-columns: 1fr; gap: 32px; }
       .how-steps::before { display: none; }
       .hero-photo { width: 100%; }
-      .hero-photo img { opacity: 0.5; }
+      .hero-photo img, .hero-photo video { opacity: 0.5; }
       .hero-photo::before {
         background: linear-gradient(
           90deg,
@@ -727,7 +728,7 @@
       .hero { padding-top: 52px; padding-bottom: 100px; min-height: 100svh; }
       .hero-inner { padding: 24px 16px 36px; max-width: 100%; }
       .hero-photo { width: 100%; }
-      .hero-photo img { opacity: 0.38; }
+      .hero-photo img, .hero-photo video { opacity: 0.38; }
       .hero-photo::before {
         background: linear-gradient(
           160deg,
@@ -1200,15 +1201,16 @@
 <section class="hero">
   <div class="speed-lines"></div>
 
-  <!-- Real jet ski photo — right panel -->
+  <!-- Jet ski video — hero background -->
   <div class="hero-photo" aria-hidden="true">
-    <img
-      src="https://images.unsplash.com/photo-1755566981083-5e54b2915148?w=1400&q=85&auto=format&fit=crop"
-      alt="Jet ski action Sotogrande"
-      loading="eager"
-      fetchpriority="high"
-      onerror="this.style.display='none'"
+    <video
+      id="heroVideo"
+      autoplay loop muted playsinline preload="auto"
+      poster="https://images.unsplash.com/photo-1755566981083-5e54b2915148?w=1200&q=60&auto=format&fit=crop"
     >
+      <source src="./jetski-hero.webm" type="video/webm">
+      <source src="./jetski-hero.mp4"  type="video/mp4">
+    </video>
   </div>
 
   <div class="container">
@@ -1712,7 +1714,28 @@
   });
   document.querySelectorAll('[data-count]').forEach(el => co.observe(el));
 
-  // ── Smooth anchor offset (for fixed nav) ──
+  // ── Mobile video autoplay fix ──
+  const heroVideo = document.getElementById('heroVideo');
+  if (heroVideo) {
+    // Force play — needed on iOS Safari and some Android browsers
+    const tryPlay = () => {
+      heroVideo.muted = true;
+      heroVideo.play().catch(() => {
+        // Autoplay blocked — poster image stays visible, that's fine
+      });
+    };
+    // Try immediately
+    tryPlay();
+    // Also try on first user interaction (touchstart covers iOS)
+    ['touchstart','click','scroll'].forEach(evt => {
+      document.addEventListener(evt, () => { heroVideo.play().catch(()=>{}); }, { once: true, passive: true });
+    });
+    // Try when page is fully visible
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) heroVideo.play().catch(()=>{});
+    });
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const id = a.getAttribute('href').slice(1);
