@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es" data-lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sotojets – Jet Ski Sotogrande | Book Now</title>
+  <title>Sotojets – Alquiler Moto de Agua Sotogrande | Reserva Online</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -1182,19 +1182,39 @@
       .modal-progress { padding: 10px 14px; }
       .p-step span { display: none; }
     }
+
+    /* ── Language toggle ── */
+    .lang-toggle { display:flex; align-items:center; gap:5px; }
+    .lang-btn {
+      background:none; border:none; cursor:pointer;
+      font-size:0.72rem; font-weight:700; letter-spacing:1px;
+      color:rgba(255,255,255,0.3); padding:4px 2px;
+      transition:color 0.2s; font-family:'Inter',sans-serif;
+    }
+    .lang-btn:hover { color:var(--white); }
+    .lang-btn.active { color:var(--wake); }
+    .lang-sep { color:rgba(255,255,255,0.2); font-size:0.7rem; }
+
   </style>
 </head>
 <body>
 
 <!-- URGENCY STRIP -->
 <div class="urgency">
-  🔥 High season — <strong>limited slots available this week.</strong> Don't miss your ride.
+  <span data-i18n="urgency">🔥 Temporada alta — <strong>plazas limitadas esta semana.</strong> ¡No te quedes sin tu aventura!</span>
 </div>
 
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo">SOTO<span class="dot">.</span>JETS</a>
-  <a href="#packages" class="nav-book">Book Now ↗</a>
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="#packages" class="nav-book" data-i18n="nav_book">Reservar ↗</a>
+  </div>
 </nav>
 
 <!-- ════════ HERO ════════ -->
@@ -1215,39 +1235,39 @@
 
   <div class="container">
     <div class="hero-inner">
-      <div class="hero-tag">📍 Sotogrande Marina · Costa del Sol</div>
+      <div class="hero-tag" data-i18n="hero_tag">📍 Puerto de Sotogrande · Costa del Sol</div>
       <h1>
-        FEEL<br>
-        THE<br>
-        <span class="line2">SPEED.</span>
+        SIENTE<br>
+        LA<br>
+        <span class="line2" data-i18n="hero_h1_line3">VELOCIDAD.</span>
       </h1>
       <p class="hero-sub">
-        Ride premium Yamaha jet skis on the Mediterranean.
-        Certified instructors, stunning coastal views, zero experience needed.
+        <span data-i18n="hero_sub">Conduce motos de agua Yamaha en el Mediterráneo.
+        Instructores certificados, vistas espectaculares, sin experiencia previa.</span>
       </p>
       <div class="hero-ctas">
-        <a href="#packages" class="btn-fire">⚡ Book Your Ride Now</a>
-        <a href="#how-it-works" class="btn-ghost">▶ See How It Works</a>
+        <a href="#packages" class="btn-fire" data-i18n="hero_cta1">⚡ Reserva Tu Aventura</a>
+        <a href="#how-it-works" class="btn-ghost" data-i18n="hero_cta2">▶ ¿Cómo funciona?</a>
       </div>
       <div class="hero-proof">
         <div class="proof-item">
           <span class="proof-num" data-count="500">0<span class="accent">+</span></span>
-          <span class="proof-label">Happy Riders</span>
+          <span class="proof-label" data-i18n="proof_riders">Clientes Felices</span>
         </div>
         <div class="proof-divider"></div>
         <div class="proof-item">
           <span class="proof-num">4.9<span class="accent">★</span></span>
-          <span class="proof-label">Google Rating</span>
+          <span class="proof-label" data-i18n="proof_rating">Valoración Google</span>
         </div>
         <div class="proof-divider"></div>
         <div class="proof-item">
           <span class="proof-num" data-count="30">0</span>
-          <span class="proof-label">Tours / Week</span>
+          <span class="proof-label" data-i18n="proof_tours">Tours / Semana</span>
         </div>
         <div class="proof-divider"></div>
         <div class="proof-item">
           <span class="proof-num">3</span>
-          <span class="proof-label">Experiences</span>
+          <span class="proof-label" data-i18n="proof_exp">Experiencias</span>
         </div>
       </div>
     </div>
@@ -1263,23 +1283,27 @@
   <div class="trust-inner">
     <div class="trust-item">
       <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.2L12 17l-6.2 3.9 2.4-7.2L2 9.2h7.6L12 2z" fill="#F5B700"/></svg>
-      4.9/5 Google Reviews
+      <span data-i18n="trust_reviews">4.9/5 Reseñas Google</span>
     </div>
     <div class="trust-item">
       <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M12 1L9 9H1l6.5 4.7L5 21 12 16l7 5-2.5-7.3L22 9h-8L12 1z" fill="none" stroke="#00C9B8" stroke-width="1.8"/></svg>
-      Certified Professional Instructors
+      <span data-i18n="trust_instructors">Instructores Profesionales Certificados</span>
     </div>
     <div class="trust-item">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z" stroke="#00C9B8" stroke-width="1.8"/><path d="M16 3H8L6 7h12l-2-4z" stroke="#00C9B8" stroke-width="1.8"/></svg>
-      Latest Yamaha Fleet 2024/25
+      <span data-i18n="trust_fleet">Flota Yamaha 2024/25</span>
     </div>
     <div class="trust-item">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5.5 3.5 10.7 8 12 4.5-1.3 8-6.5 8-12V6l-8-4z" stroke="#00C9B8" stroke-width="1.8"/></svg>
-      Full Insurance Included
+      <span data-i18n="trust_insurance">Seguro Completo Incluido</span>
+    </div>
+    <div class="trust-item">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l-3 3H5l3 3-3 3h4l3 3 3-3h4l-3-3 3-3h-4l-3-3z" stroke="#00C9B8" stroke-width="1.5" fill="none"/><circle cx="12" cy="12" r="2" fill="#00C9B8"/></svg>
+      <span data-i18n="trust_maritime">Bajo normativa de Capitanía Marítima</span>
     </div>
     <div class="trust-item">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#00C9B8" stroke-width="1.8"/><path d="M12 6v6l4 2" stroke="#00C9B8" stroke-width="1.8" stroke-linecap="round"/></svg>
-      Instant Online Booking
+      <span data-i18n="trust_booking">Reserva Online Instantánea</span>
     </div>
   </div>
 </div>
@@ -1288,18 +1312,18 @@
 <section class="packages" id="packages">
   <div class="container">
     <div class="packages-header reveal">
-      <span class="eyebrow">Choose Your Experience</span>
-      <h2 class="section-h2">Pick Your Ride.<br><em>Book in 60 Seconds.</em></h2>
-      <p class="section-sub">All packages include life vests, safety briefing, and certified instructor on water. No experience required.</p>
+      <span class="eyebrow" data-i18n="pkg_eyebrow">Elige Tu Experiencia</span>
+      <h2 class="section-h2"><span data-i18n="pkg_h2">Elige Tu Ruta.<br><em>Reserva en 60 Segundos.</em></span></h2>
+      <p class="section-sub" data-i18n="pkg_sub">Todos los paquetes incluyen chaleco salvavidas, briefing de seguridad e instructor certificado en el agua. Sin experiencia previa.</p>
     </div>
 
     <div class="pkg-grid">
 
       <!-- 30 MIN -->
       <div class="pkg-card reveal reveal-d1">
-        <div class="pkg-tag">Starter</div>
-        <div class="pkg-name">30-Min Blast</div>
-        <p class="pkg-tagline">Pure adrenaline, straight to the point. Perfect for a quick thrill.</p>
+        <div class="pkg-tag" data-i18n="pkg_tag1">Iniciación</div>
+        <div class="pkg-name" data-i18n="pkg1_name">Blast 30 Min</div>
+        <p class="pkg-tagline" data-i18n="pkg1_tag">Adrenalina pura, sin rodeos. Perfecto para un subidón rápido.</p>
         <hr class="pkg-divider">
         <div class="pkg-price"><span class="currency">€</span>79</div>
         <p class="pkg-price-note">per jet ski · up to 2 riders</p>
@@ -1310,15 +1334,15 @@
           <li><span class="chk">✓</span> Certified instructor nearby</li>
           <li><span class="chk">✓</span> Yamaha jet ski</li>
         </ul>
-        <button class="btn-pkg btn-pkg-default" onclick="openModal('Adventure Jet Ski 30min', 80, '30 min')">Book 30-Min Blast →</button>
+        <button class="btn-pkg btn-pkg-default" onclick="openModal('Adventure Jet Ski 30min', 80, '30 min')" data-i18n="book_30">Reservar Blast 30 Min →</button>
       </div>
 
       <!-- 1 HOUR — FEATURED -->
       <div class="pkg-card featured reveal reveal-d2">
         <div class="pkg-popular">🔥 Most Popular</div>
-        <div class="pkg-tag">Best Value</div>
-        <div class="pkg-name">1-Hour Ride</div>
-        <p class="pkg-tagline">Optimal sea conditions, maximum speed. The full Mediterranean experience.</p>
+        <div class="pkg-tag" data-i18n="pkg_tag2">Mejor Precio</div>
+        <div class="pkg-name" data-i18n="pkg2_name">Ruta 1 Hora</div>
+        <p class="pkg-tagline" data-i18n="pkg2_tag">Condiciones óptimas, velocidad máxima. La experiencia mediterránea completa.</p>
         <hr class="pkg-divider">
         <div class="pkg-price"><span class="currency">€</span>129</div>
         <p class="pkg-price-note">per jet ski · up to 2 riders</p>
@@ -1330,13 +1354,13 @@
           <li><span class="chk">✓</span> Open sea access &amp; coastal views</li>
           <li><span class="chk">✓</span> Latest Yamaha jet ski</li>
         </ul>
-        <button class="btn-pkg btn-pkg-fire" onclick="openModal('Adventure Jet Ski 1 Hour', 130, '1 hour')">Book 1-Hour Ride →</button>
+        <button class="btn-pkg btn-pkg-fire" onclick="openModal('Adventure Jet Ski 1 Hour', 130, '1 hour')" data-i18n="book_60">Reservar Ruta 1 Hora →</button>
       </div>
 
       <!-- SAFARI -->
       <div class="pkg-card reveal reveal-d3">
         <div class="pkg-tag">Adventure Tour</div>
-        <div class="pkg-name">Safari Alcaidesa</div>
+        <div class="pkg-name" data-i18n="pkg3_name">Safari Alcaidesa</div>
         <p class="pkg-tagline">Guided coastal tour with marine wildlife, scenic views, and full-speed stretches.</p>
         <hr class="pkg-divider">
         <div class="pkg-price"><span class="currency">€</span>149</div>
@@ -1349,11 +1373,11 @@
           <li><span class="chk">✓</span> Alcaidesa Beach destination</li>
           <li><span class="chk">✓</span> Marine wildlife spotting</li>
         </ul>
-        <button class="btn-pkg btn-pkg-default" onclick="openModal('Safari Jet Ski Alcaidesa', 150, '~90 min')">Book Safari →</button>
+        <button class="btn-pkg btn-pkg-default" onclick="openModal('Safari Jet Ski Alcaidesa', 150, '~90 min')" data-i18n="book_safari">Reservar Safari →</button>
       </div>
 
     </div>
-    <p class="pkg-note reveal">💳 Refundable deposit up to €500 per jet ski · 130 kg combined weight limit · 18+ to drive (16+ with parental consent)</p>
+    <p class="pkg-note reveal" data-i18n="pkg_note">💳 Depósito reembolsable hasta €500 por moto · Límite 130 kg combinados · Mayor de 18 años para conducir (16+ con autorización parental) · Actividad regulada bajo normativa de Capitanía Marítima</p>
   </div>
 </section>
 
@@ -1361,24 +1385,24 @@
 <section class="how" id="how-it-works">
   <div class="container">
     <div class="how-header reveal">
-      <span class="eyebrow">Super Simple Process</span>
-      <h2 class="section-h2">On the Water<br><em>in 3 Steps</em></h2>
+      <span class="eyebrow" data-i18n="how_eyebrow">Proceso Súper Sencillo</span>
+      <h2 class="section-h2"><span data-i18n="how_h2">En el Agua<br><em>en 3 Pasos</em></span></h2>
     </div>
     <div class="how-steps">
       <div class="step reveal reveal-d1">
         <div class="step-num">1</div>
-        <h3>Choose &amp; Book Online</h3>
-        <p>Pick your package, choose your date and time, pay securely online. You get instant confirmation — no phone calls needed.</p>
+        <h3 data-i18n="how1_h3">Elige y Reserva Online</h3>
+        <p data-i18n="how1_p">Elige tu paquete, selecciona fecha y hora, paga de forma segura. Confirmación instantánea — sin llamadas.</p>
       </div>
       <div class="step reveal reveal-d2">
         <div class="step-num">2</div>
-        <h3>Show Up at the Marina</h3>
-        <p>Arrive at Sotogrande Marina at least 20 minutes before your slot. Bring your ID (passport or DNI) and a credit card.</p>
+        <h3 data-i18n="how2_h3">Llega al Puerto</h3>
+        <p data-i18n="how2_p">Llega al Puerto de Sotogrande 20 minutos antes. Trae tu DNI o pasaporte y tarjeta de crédito.</p>
       </div>
       <div class="step reveal reveal-d3">
         <div class="step-num">3</div>
-        <h3>Hit the Water &amp; Ride</h3>
-        <p>Quick safety briefing, life vest on, and you're off. Your certified instructor stays close. No experience? No problem.</p>
+        <h3 data-i18n="how3_h3">Al Agua y a Navegar</h3>
+        <p data-i18n="how3_p">Briefing de seguridad, chaleco puesto y a navegar. Tu instructor certificado siempre cerca. ¿Sin experiencia? Sin problema.</p>
       </div>
     </div>
   </div>
@@ -1388,30 +1412,30 @@
 <section class="why">
   <div class="container">
     <div class="why-header reveal">
-      <span class="eyebrow" style="color:var(--wake);">Why Sotojets</span>
-      <h2 class="section-h2">The #1 Jet Ski Experience<br>on the Costa del Sol</h2>
-      <p class="section-sub">Not just a rental — a full sea adventure built around your safety and your thrills.</p>
+      <span class="eyebrow" style="color:var(--wake);" data-i18n="why_eyebrow">Por Qué Sotojets</span>
+      <h2 class="section-h2"><span data-i18n="why_h2">La Experiencia de Moto de Agua Nº1<br>en la Costa del Sol</span></h2>
+      <p class="section-sub" data-i18n="why_sub">No solo un alquiler — una aventura completa en el mar diseñada para tu seguridad y tu adrenalina.</p>
     </div>
     <div class="why-grid">
       <div class="why-card reveal reveal-d1">
         <div class="why-icon">🏅</div>
-        <h3>Certified Professionals</h3>
-        <p>All instructors are fully certified with years on these waters. You're in safe hands from the moment you arrive.</p>
+        <h3 data-i18n="why1_h3">Profesionales Certificados</h3>
+        <p data-i18n="why1_p">Todos nuestros instructores están certificados con años de experiencia en estas aguas. Estás en buenas manos desde el primer momento.</p>
       </div>
       <div class="why-card reveal reveal-d2">
         <div class="why-icon">🛥️</div>
-        <h3>Latest Yamaha Fleet</h3>
-        <p>We only run the newest, most powerful Yamaha jet skis — fully maintained, technically inspected, ready for max speed.</p>
+        <h3 data-i18n="why2_h3">Flota Yamaha de Última Generación</h3>
+        <p data-i18n="why2_p">Solo motos de agua Yamaha de última generación — revisadas, mantenidas al día y listas para la velocidad máxima.</p>
       </div>
       <div class="why-card reveal reveal-d1">
         <div class="why-icon">📍</div>
-        <h3>Unbeatable Location</h3>
-        <p>Sotogrande Marina is one of the best-positioned spots on the Costa del Sol. Calm waters in the morning, open sea all day.</p>
+        <h3 data-i18n="why3_h3">Ubicación Inmejorable</h3>
+        <p data-i18n="why3_p">El Puerto de Sotogrande es uno de los mejores puntos de la Costa del Sol. Aguas tranquilas por la mañana, mar abierto todo el día.</p>
       </div>
       <div class="why-card reveal reveal-d2">
         <div class="why-icon">🛡️</div>
-        <h3>Safety First, Always</h3>
-        <p>Full insurance included, life vests for every rider, and a comprehensive safety briefing before every single session.</p>
+        <h3 data-i18n="why4_h3">Seguridad Ante Todo</h3>
+        <p data-i18n="why4_p">Seguro completo incluido, chaleco salvavidas para cada usuario y briefing completo antes de cada sesión. Cumplimos con toda la normativa de Capitanía Marítima.</p>
       </div>
     </div>
   </div>
@@ -1421,33 +1445,33 @@
 <section class="reviews">
   <div class="container">
     <div class="reviews-header reveal">
-      <span class="eyebrow">Real People, Real Rides</span>
-      <h2 class="section-h2">What Our Riders Say</h2>
+      <span class="eyebrow" data-i18n="rev_eyebrow">Opiniones Reales</span>
+      <h2 class="section-h2" data-i18n="rev_h2">Lo Que Dicen Nuestros Clientes</h2>
       <div class="reviews-meta">
         <span class="stars">★★★★★</span>
-        <span>4.9 out of 5 · 100+ Google Reviews</span>
+        <span data-i18n="rev_meta">4.9 sobre 5 · +100 Reseñas en Google</span>
       </div>
     </div>
     <div class="reviews-grid">
       <div class="review-card reveal reveal-d1">
         <div class="review-stars"><span class="stars" style="font-size:0.9rem;">★★★★★</span></div>
-        <p class="review-quote">Absolutely incredible experience! The instructor was fantastic and we felt completely safe the whole time. The 1-hour ride was worth every penny. We'll definitely be back next summer.</p>
+        <p class="review-quote"><span data-i18n="rev1_text">Una experiencia increíble. El instructor fue fantástico y nos sentimos completamente seguros en todo momento. La ruta de 1 hora valió cada céntimo. ¡Volvemos el próximo verano!</span></p>
         <div class="reviewer">
           <div class="reviewer-av" style="background: linear-gradient(135deg, #0057A8, #00C9B8);">S</div>
           <div>
             <div class="reviewer-name">Sarah M.</div>
-            <div class="reviewer-sub">Gibraltar · Google Review</div>
+            <div class="reviewer-sub" data-i18n="rev1_sub">Gibraltar · Reseña de Google</div>
           </div>
         </div>
       </div>
       <div class="review-card reveal reveal-d2">
         <div class="review-stars"><span class="stars" style="font-size:0.9rem;">★★★★★</span></div>
-        <p class="review-quote">Did the Alcaidesa safari and it was the highlight of our whole holiday. Amazing scenery, spotted dolphins, and the guides were so friendly and professional. Unreal experience!</p>
+        <p class="review-quote"><span data-i18n="rev2_text">Hicimos el safari de Alcaidesa y fue lo mejor de todo el viaje. Paisajes increíbles, vimos delfines, y los guías eran muy simpáticos y profesionales. ¡Experiencia única!</span></p>
         <div class="reviewer">
           <div class="reviewer-av" style="background: linear-gradient(135deg, #FF5635, #F5B700);">J</div>
           <div>
             <div class="reviewer-name">James R.</div>
-            <div class="reviewer-sub">Marbella · Google Review</div>
+            <div class="reviewer-sub" data-i18n="rev2_sub">Marbella · Reseña de Google</div>
           </div>
         </div>
       </div>
@@ -1458,7 +1482,7 @@
           <div class="reviewer-av" style="background: linear-gradient(135deg, #6B21A8, #0057A8);">M</div>
           <div>
             <div class="reviewer-name">María G.</div>
-            <div class="reviewer-sub">Málaga · Google Review</div>
+            <div class="reviewer-sub" data-i18n="rev3_sub">Málaga · Reseña de Google</div>
           </div>
         </div>
       </div>
@@ -1470,33 +1494,33 @@
 <section class="faq">
   <div class="container">
     <div class="faq-header reveal">
-      <span class="eyebrow">Before You Book</span>
-      <h2 class="section-h2">Frequent Questions</h2>
+      <span class="eyebrow" data-i18n="faq_eyebrow">Antes de Reservar</span>
+      <h2 class="section-h2" data-i18n="faq_h2">Preguntas Frecuentes</h2>
     </div>
     <div class="faq-list">
       <div class="faq-item reveal">
-        <div class="faq-q">What documentation do I need to bring? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Bring a valid Passport or National ID (DNI) and a credit card. A refundable deposit of up to €500 per jet ski may be charged at check-in. This is returned in full at the end of your session if there's no damage.</div>
+        <div class="faq-q" data-i18n="faq_q1">¿Qué documentación necesito? <span class="faq-toggle">+</span></div>
+        <div class="faq-a" data-i18n="faq_a1">Trae un Pasaporte o DNI válido y una tarjeta de crédito. Se puede cobrar un depósito reembolsable de hasta €500 por moto en el check-in, que se devuelve íntegro al finalizar la sesión si no hay daños.</div>
       </div>
       <div class="faq-item reveal">
-        <div class="faq-q">What is the minimum age? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Riders must be 18+ to drive a jet ski, or 16+ with written parental consent. Passengers must be at least 10 years old (ages 8–10 are at Sotojets' discretion).</div>
+        <div class="faq-q" data-i18n="faq_q2">¿Cuál es la edad mínima? <span class="faq-toggle">+</span></div>
+        <div class="faq-a" data-i18n="faq_a2">Hay que tener 18 años o más para conducir, o 16 años con autorización parental por escrito. Los pasajeros deben tener al menos 10 años (de 8 a 10 años queda a criterio de Sotojets).</div>
       </div>
       <div class="faq-item reveal">
-        <div class="faq-q">How many people fit on one jet ski? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Maximum 2 people per jet ski, with a combined weight limit of 130 kg. Pricing is per jet ski — not per person — making it great value for couples or friends sharing a ride.</div>
+        <div class="faq-q" data-i18n="faq_q3">¿Cuántas personas caben en una moto de agua? <span class="faq-toggle">+</span></div>
+        <div class="faq-a" data-i18n="faq_a3">Máximo 2 personas por moto, con un límite de peso combinado de 130 kg. El precio es por moto, no por persona — ideal para parejas o amigos que compartan la moto.</div>
       </div>
       <div class="faq-item reveal">
-        <div class="faq-q">When should I arrive at the marina? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Arrive at Sotogrande Marina at least 20 minutes before your scheduled start time. Latecomers will be moved to the next available slot, so plan ahead!</div>
+        <div class="faq-q" data-i18n="faq_q4">¿Cuándo debo llegar al puerto? <span class="faq-toggle">+</span></div>
+        <div class="faq-a" data-i18n="faq_a4">Llega al Puerto de Sotogrande al menos 20 minutos antes de tu hora. Los retrasos suponen pasar al siguiente hueco disponible, ¡así que planifica con margen!</div>
       </div>
       <div class="faq-item reveal">
-        <div class="faq-q">Do I need previous jet ski experience? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">Zero experience required. Our certified instructors give you a full safety and technique briefing before you set off, and they stay close by throughout your session. Absolute beginners are very welcome.</div>
+        <div class="faq-q" data-i18n="faq_q5">¿Necesito experiencia previa en moto de agua? <span class="faq-toggle">+</span></div>
+        <div class="faq-a" data-i18n="faq_a5">Cero experiencia necesaria. Nuestros instructores certificados te dan un briefing completo de seguridad y técnica antes de salir, y permanecen cerca durante toda la sesión. Los principiantes son más que bienvenidos.</div>
       </div>
       <div class="faq-item reveal">
-        <div class="faq-q">What happens if I cause damage? <span class="faq-toggle">+</span></div>
-        <div class="faq-a">The deposit (up to €500) covers repair costs from accidental damage. If damage exceeds this amount, the rider is responsible for the balance. Riders who behave irresponsibly will be removed from the water immediately with no refund.</div>
+        <div class="faq-q" data-i18n="faq_q6">¿Qué pasa si causo algún daño? <span class="faq-toggle">+</span></div>
+        <div class="faq-a" data-i18n="faq_a6">El depósito (hasta €500) cubre los costes de reparación por daños accidentales. Si el daño supera esta cantidad, el conductor es responsable de la diferencia. Los usuarios que actúen de forma irresponsable serán retirados del agua de inmediato sin derecho a reembolso.</div>
       </div>
     </div>
   </div>
@@ -1505,22 +1529,22 @@
 <!-- ════════ FINAL CTA ════════ -->
 <section class="final">
   <div class="final-inner">
-    <span class="eyebrow" style="color:var(--wake);text-align:center;display:block;margin-bottom:16px;">Ready?</span>
-    <h2>DON'T JUST<br>WATCH THE SEA.<br><em>CONQUER IT.</em></h2>
-    <p>Slots fill up fast in high season. Lock in your jet ski experience now and make this the memory of your trip.</p>
+    <span class="eyebrow" style="color:var(--wake);text-align:center;display:block;margin-bottom:16px;" data-i18n="final_eyebrow">¿Listo?</span>
+    <h2><span data-i18n="final_h2">NO LO MIRES<br>DESDE LA ORILLA.<br><em>CONSÉGUELO.</em></span></h2>
+    <p data-i18n="final_p">Las plazas vuelan en temporada alta. Asegura tu aventura ahora y conviértela en el mejor recuerdo de tu viaje.</p>
     <div class="final-btns">
       <button onclick="openModal('Adventure Jet Ski 1 Hour', 130, '1 hour')"
-         class="btn-fire" style="font-size:1rem; padding:18px 36px; border:none; cursor:pointer; font-family:'Inter',sans-serif; border-radius:6px;">
-        ⚡ Reserve My Spot
+         class="btn-fire" style="font-size:1rem; padding:18px 36px; border:none; cursor:pointer; font-family:'Inter',sans-serif; border-radius:6px;" data-i18n="final_cta">
+        ⚡ Asegura Tu Plaza
       </button>
-      <a href="tel:+34XXXXXXXXX" class="btn-call">📞 Call Us</a>
+      <a href="tel:+34XXXXXXXXX" class="btn-call" data-i18n="final_call">📞 Llámanos</a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Sotojets · Sotogrande Marina, Cádiz, Spain &nbsp;·&nbsp; <a href="https://sotojets.es/politica-de-cookies/">Cookie Policy</a> &nbsp;·&nbsp; <a href="https://sotojets.es/">sotojets.es</a></p>
+  <p data-i18n="footer">© 2026 Sotojets · Puerto de Sotogrande, Cádiz, España &nbsp;·&nbsp; <a href="https://sotojets.es/politica-de-cookies/">Política de Cookies</a> &nbsp;·&nbsp; <a href="https://sotojets.es/">sotojets.es</a></p>
 </footer>
 
 <!-- FLOATING WHATSAPP -->
@@ -1530,7 +1554,7 @@
 </a>
 
 <!-- MOBILE STICKY BAR -->
-<button class="mobile-bar" onclick="openModal('Adventure Jet Ski 1 Hour', 130, '1 hour')">⚡ Book Your Jet Ski Now →</button>
+<button class="mobile-bar" onclick="openModal('Adventure Jet Ski 1 Hour', 130, '1 hour')" data-i18n="mobile_bar">⚡ Reserva Tu Moto de Agua →</button>
 
 <!-- ════════════════════════════════════════════
      BOOKING MODAL
@@ -1541,11 +1565,11 @@
     <div class="modal-progress">
       <div class="progress-steps">
         <div class="p-step active" id="pStep1">
-          <div class="p-num">1</div><span>Date &amp; time</span>
+          <div class="p-num">1</div><span data-i18n="modal_step1">Fecha y hora</span>
         </div>
         <div class="p-arrow"></div>
         <div class="p-step" id="pStep2">
-          <div class="p-num">2</div><span>Contact details</span>
+          <div class="p-num">2</div><span data-i18n="modal_step2">Tus datos</span>
         </div>
       </div>
       <button class="modal-close" onclick="closeModal()">✕</button>
@@ -1555,7 +1579,7 @@
       <!-- STEP 1 -->
       <div class="step-panel active" id="step1">
         <div class="cal-section">
-          <h2><span class="step-dot">1</span> Choose a date and time</h2>
+          <h2><span class="step-dot">1</span> <span data-i18n="modal_h1">Elige fecha y hora</span></h2>
           <div class="calendar-nav">
             <button class="cal-nav-btn" onclick="changeMonth(-1)">‹</button>
             <span class="cal-month" id="calMonthLabel"></span>
@@ -1593,7 +1617,7 @@
       <!-- STEP 2 -->
       <div class="step-panel" id="step2">
         <div class="contact-section">
-          <h2><span class="step-dot">2</span> Your details</h2>
+          <h2><span class="step-dot">2</span> <span data-i18n="modal_h2">Tus datos</span></h2>
           <p class="contact-sub">Almost there — just a few details to confirm your booking.</p>
           <div class="form-grid">
             <div class="form-group">
@@ -1654,6 +1678,205 @@
 </div>
 
 <script>
+
+  // ── i18n translations ──
+  const TRANSLATIONS = {
+    es: {
+      urgency:        '🔥 Temporada alta — <strong>plazas limitadas esta semana.</strong> ¡No te quedes sin tu aventura!',
+      nav_book:       'Reservar ↗',
+      hero_tag:       '📍 Puerto de Sotogrande · Costa del Sol',
+      hero_h1_line3:  'VELOCIDAD.',
+      hero_sub:       'Conduce motos de agua Yamaha en el Mediterráneo.<br>Instructores certificados, vistas espectaculares, sin experiencia previa.',
+      hero_cta1:      '⚡ Reserva Tu Aventura',
+      hero_cta2:      '▶ ¿Cómo funciona?',
+      proof_riders:   'Clientes Felices',
+      proof_rating:   'Valoración Google',
+      proof_tours:    'Tours / Semana',
+      proof_exp:      'Experiencias',
+      trust_reviews:      '4.9/5 Reseñas Google',
+      trust_instructors:  'Instructores Profesionales Certificados',
+      trust_fleet:        'Flota Yamaha 2024/25',
+      trust_insurance:    'Seguro Completo Incluido',
+      trust_maritime:     'Bajo normativa de Capitanía Marítima',
+      trust_booking:      'Reserva Online Instantánea',
+      pkg_eyebrow:  'Elige Tu Experiencia',
+      pkg_h2:       'Elige Tu Ruta.<br><em>Reserva en 60 Segundos.</em>',
+      pkg_sub:      'Todos los paquetes incluyen chaleco salvavidas, briefing de seguridad e instructor certificado en el agua. Sin experiencia previa.',
+      pkg_tag1:     'Iniciación', pkg_tag2: 'Mejor Precio', pkg_tag3: 'Tour Guiado',
+      pkg1_name:    'Blast 30 Min',
+      pkg1_tag:     'Adrenalina pura, sin rodeos. Perfecto para un subidón rápido.',
+      pkg2_name:    'Ruta 1 Hora',
+      pkg2_tag:     'Condiciones óptimas, velocidad máxima. La experiencia mediterránea completa.',
+      pkg3_name:    'Safari Alcaidesa',
+      pkg3_tag:     'Safari costero guiado a la playa de Alcaidesa. Fauna marina, vistas y tramos a fondo.',
+      book_30:      'Reservar Blast 30 Min →',
+      book_60:      'Reservar Ruta 1 Hora →',
+      book_safari:  'Reservar Safari →',
+      pkg_note:     '💳 Depósito reembolsable hasta €500 por moto · Límite 130 kg combinados · Mayor de 18 años para conducir (16+ con autorización parental) · Actividad regulada bajo normativa de Capitanía Marítima',
+      how_eyebrow: 'Proceso Súper Sencillo',
+      how_h2:      'En el Agua<br><em>en 3 Pasos</em>',
+      how1_h3: 'Elige y Reserva Online',
+      how1_p:  'Elige tu paquete, selecciona fecha y hora, paga de forma segura. Confirmación instantánea — sin llamadas.',
+      how2_h3: 'Llega al Puerto',
+      how2_p:  'Llega al Puerto de Sotogrande 20 minutos antes. Trae tu DNI o pasaporte y tarjeta de crédito.',
+      how3_h3: 'Al Agua y a Navegar',
+      how3_p:  'Briefing de seguridad, chaleco puesto y a navegar. Tu instructor certificado siempre cerca. ¿Sin experiencia? Sin problema.',
+      why_eyebrow: 'Por Qué Sotojets',
+      why_h2:      'La Experiencia de Moto de Agua Nº1<br>en la Costa del Sol',
+      why_sub:     'No solo un alquiler — una aventura completa en el mar diseñada para tu seguridad y tu adrenalina.',
+      why1_h3: 'Profesionales Certificados',
+      why1_p:  'Todos nuestros instructores están certificados con años de experiencia en estas aguas. Estás en buenas manos desde el primer momento.',
+      why2_h3: 'Flota Yamaha de Última Generación',
+      why2_p:  'Solo motos de agua Yamaha de última generación — revisadas, mantenidas al día y listas para la velocidad máxima.',
+      why3_h3: 'Ubicación Inmejorable',
+      why3_p:  'El Puerto de Sotogrande es uno de los mejores puntos de la Costa del Sol. Aguas tranquilas por la mañana, mar abierto todo el día.',
+      why4_h3: 'Seguridad Ante Todo',
+      why4_p:  'Seguro completo incluido, chaleco salvavidas para cada usuario y briefing completo antes de cada sesión. Cumplimos con toda la normativa de Capitanía Marítima.',
+      rev_eyebrow: 'Opiniones Reales',
+      rev_h2:      'Lo Que Dicen Nuestros Clientes',
+      rev_meta:    '4.9 sobre 5 · +100 Reseñas en Google',
+      rev1_text:   'Una experiencia increíble. El instructor fue fantástico y nos sentimos completamente seguros en todo momento. La ruta de 1 hora valió cada céntimo. ¡Volvemos el próximo verano!',
+      rev1_sub:    'Gibraltar · Reseña de Google',
+      rev2_text:   'Hicimos el safari de Alcaidesa y fue lo mejor de todo el viaje. Paisajes increíbles, vimos delfines, y los guías eran muy simpáticos y profesionales. ¡Experiencia única!',
+      rev2_sub:    'Marbella · Reseña de Google',
+      rev3_sub:    'Málaga · Reseña de Google',
+      faq_eyebrow: 'Antes de Reservar',
+      faq_h2:      'Preguntas Frecuentes',
+      faq_q1: '¿Qué documentación necesito? <span class="faq-toggle">+</span>',
+      faq_a1: 'Trae un Pasaporte o DNI válido y una tarjeta de crédito. Se puede cobrar un depósito reembolsable de hasta €500 por moto en el check-in, que se devuelve íntegro al finalizar la sesión si no hay daños.',
+      faq_q2: '¿Cuál es la edad mínima? <span class="faq-toggle">+</span>',
+      faq_a2: 'Hay que tener 18 años o más para conducir, o 16 años con autorización parental por escrito. Los pasajeros deben tener al menos 10 años (de 8 a 10 años queda a criterio de Sotojets).',
+      faq_q3: '¿Cuántas personas caben en una moto de agua? <span class="faq-toggle">+</span>',
+      faq_a3: 'Máximo 2 personas por moto, con un límite de peso combinado de 130 kg. El precio es por moto, no por persona — ideal para parejas o amigos que compartan la moto.',
+      faq_q4: '¿Cuándo debo llegar al puerto? <span class="faq-toggle">+</span>',
+      faq_a4: 'Llega al Puerto de Sotogrande al menos 20 minutos antes de tu hora. Los retrasos suponen pasar al siguiente hueco disponible, ¡así que planifica con margen!',
+      faq_q5: '¿Necesito experiencia previa en moto de agua? <span class="faq-toggle">+</span>',
+      faq_a5: 'Cero experiencia necesaria. Nuestros instructores certificados te dan un briefing completo de seguridad y técnica antes de salir, y permanecen cerca durante toda la sesión.',
+      faq_q6: '¿Qué pasa si causo algún daño? <span class="faq-toggle">+</span>',
+      faq_a6: 'El depósito (hasta €500) cubre los costes de reparación por daños accidentales. Si el daño supera esta cantidad, el conductor es responsable de la diferencia.',
+      final_eyebrow: '¿Listo?',
+      final_h2:  'NO LO MIRES<br>DESDE LA ORILLA.<br><em>CONSÉGUELO.</em>',
+      final_p:   'Las plazas vuelan en temporada alta. Asegura tu aventura ahora y conviértela en el mejor recuerdo de tu viaje.',
+      final_cta: '⚡ Asegura Tu Plaza',
+      final_call:'📞 Llámanos',
+      mobile_bar:'⚡ Reserva Tu Moto de Agua →',
+      footer:    '© 2026 Sotojets · Puerto de Sotogrande, Cádiz, España &nbsp;·&nbsp; <a href="https://sotojets.es/politica-de-cookies/">Política de Cookies</a> &nbsp;·&nbsp; <a href="https://sotojets.es/">sotojets.es</a>',
+      modal_step1:'Fecha y hora', modal_step2:'Tus datos',
+      modal_h1:'Elige fecha y hora', modal_h2:'Tus datos',
+    },
+    en: {
+      urgency:        '🔥 High season — <strong>limited slots available this week.</strong> Don\'t miss your ride.',
+      nav_book:       'Book Now ↗',
+      hero_tag:       '📍 Sotogrande Marina · Costa del Sol',
+      hero_h1_line3:  'SPEED.',
+      hero_sub:       'Ride premium Yamaha jet skis on the Mediterranean.<br>Certified instructors, stunning coastal views, zero experience needed.',
+      hero_cta1:      '⚡ Book Your Ride Now',
+      hero_cta2:      '▶ See How It Works',
+      proof_riders:   'Happy Riders',
+      proof_rating:   'Google Rating',
+      proof_tours:    'Tours / Week',
+      proof_exp:      'Experiences',
+      trust_reviews:      '4.9/5 Google Reviews',
+      trust_instructors:  'Certified Professional Instructors',
+      trust_fleet:        'Latest Yamaha Fleet 2024/25',
+      trust_insurance:    'Full Insurance Included',
+      trust_maritime:     'Maritime Authority Compliant',
+      trust_booking:      'Instant Online Booking',
+      pkg_eyebrow:  'Choose Your Experience',
+      pkg_h2:       'Pick Your Ride.<br><em>Book in 60 Seconds.</em>',
+      pkg_sub:      'All packages include life vests, safety briefing, and certified instructor on water. No experience required.',
+      pkg_tag1: 'Starter', pkg_tag2: 'Best Value', pkg_tag3: 'Guided Tour',
+      pkg1_name: '30-Min Blast',
+      pkg1_tag:  'Pure adrenaline, straight to the point. Perfect for a quick thrill.',
+      pkg2_name: '1-Hour Ride',
+      pkg2_tag:  'Optimal sea conditions, maximum speed. The full Mediterranean experience.',
+      pkg3_name: 'Safari Alcaidesa',
+      pkg3_tag:  'Guided coastal safari to Alcaidesa Beach. Wildlife, views, and full-throttle stretches.',
+      book_30:    'Book 30-Min Blast →',
+      book_60:    'Book 1-Hour Ride →',
+      book_safari:'Book Safari →',
+      pkg_note:   '💳 Refundable deposit up to €500 per jet ski · 130 kg combined weight limit · 18+ to drive (16+ with parental consent) · Activity regulated under Maritime Authority',
+      how_eyebrow: 'Super Simple Process',
+      how_h2:      'On the Water<br><em>in 3 Steps</em>',
+      how1_h3: 'Choose & Book Online',
+      how1_p:  'Pick your package, choose your date and time, pay securely online. You get instant confirmation — no phone calls needed.',
+      how2_h3: 'Show Up at the Marina',
+      how2_p:  'Arrive at Sotogrande Marina at least 20 minutes before your slot. Bring your ID (passport or DNI) and a credit card.',
+      how3_h3: 'Hit the Water & Ride',
+      how3_p:  "Quick safety briefing, life vest on, and you're off. Your certified instructor stays close. No experience? No problem.",
+      why_eyebrow: 'Why Sotojets',
+      why_h2:      'The #1 Jet Ski Experience<br>on the Costa del Sol',
+      why_sub:     'Not just a rental — a full sea adventure built around your safety and your thrills.',
+      why1_h3: 'Certified Professionals',
+      why1_p:  "All instructors are fully certified with years on these waters. You're in safe hands from the moment you arrive.",
+      why2_h3: 'Latest Yamaha Fleet',
+      why2_p:  'We only run the newest, most powerful Yamaha jet skis — fully maintained, technically inspected, ready for max speed.',
+      why3_h3: 'Unbeatable Location',
+      why3_p:  'Sotogrande Marina is one of the best-positioned spots on the Costa del Sol. Calm waters in the morning, open sea all day.',
+      why4_h3: 'Safety First, Always',
+      why4_p:  'Full insurance included, life vests for every rider, and a comprehensive safety briefing before every single session. Maritime Authority compliant.',
+      rev_eyebrow: 'Real People, Real Rides',
+      rev_h2:      'What Our Riders Say',
+      rev_meta:    '4.9 out of 5 · 100+ Google Reviews',
+      rev1_text:   "Absolutely incredible experience! The instructor was fantastic and we felt completely safe the whole time. The 1-hour ride was worth every penny. We'll definitely be back next summer!",
+      rev1_sub:    'Gibraltar · Google Review',
+      rev2_text:   "Did the Alcaidesa safari and it was the highlight of our whole holiday. Amazing scenery, spotted dolphins, and the guides were so friendly and professional. Unreal experience!",
+      rev2_sub:    'Marbella · Google Review',
+      rev3_sub:    'Málaga · Google Review',
+      faq_eyebrow: 'Before You Book',
+      faq_h2:      'Frequent Questions',
+      faq_q1: 'What documentation do I need to bring? <span class="faq-toggle">+</span>',
+      faq_a1: "Bring a valid Passport or National ID (DNI) and a credit card. A refundable deposit of up to €500 per jet ski may be charged at check-in. This is returned in full at the end of your session if there's no damage.",
+      faq_q2: 'What is the minimum age? <span class="faq-toggle">+</span>',
+      faq_a2: "Riders must be 18+ to drive a jet ski, or 16+ with written parental consent. Passengers must be at least 10 years old (ages 8–10 are at Sotojets' discretion).",
+      faq_q3: 'How many people fit on one jet ski? <span class="faq-toggle">+</span>',
+      faq_a3: 'Maximum 2 people per jet ski, with a combined weight limit of 130 kg. Pricing is per jet ski — not per person — making it great value for couples or friends sharing a ride.',
+      faq_q4: 'When should I arrive at the marina? <span class="faq-toggle">+</span>',
+      faq_a4: 'Arrive at Sotogrande Marina at least 20 minutes before your scheduled start time. Latecomers will be moved to the next available slot, so plan ahead!',
+      faq_q5: 'Do I need previous jet ski experience? <span class="faq-toggle">+</span>',
+      faq_a5: 'Zero experience required. Our certified instructors give you a full safety and technique briefing before you set off, and they stay close by throughout your session.',
+      faq_q6: 'What happens if I cause damage? <span class="faq-toggle">+</span>',
+      faq_a6: 'The deposit (up to €500) covers repair costs from accidental damage. If damage exceeds this amount, the rider is responsible for the balance.',
+      final_eyebrow: 'Ready?',
+      final_h2:  "DON'T JUST<br>WATCH THE SEA.<br><em>CONQUER IT.</em>",
+      final_p:   "Slots fill up fast in high season. Lock in your jet ski experience now and make this the memory of your trip.",
+      final_cta: '⚡ Reserve My Spot',
+      final_call:'📞 Call Us',
+      mobile_bar:'⚡ Book Your Jet Ski Now →',
+      footer:    '© 2026 Sotojets · Sotogrande Marina, Cádiz, Spain &nbsp;·&nbsp; <a href="https://sotojets.es/politica-de-cookies/">Cookie Policy</a> &nbsp;·&nbsp; <a href="https://sotojets.es/">sotojets.es</a>',
+      modal_step1:'Date & time', modal_step2:'Contact details',
+      modal_h1:'Choose a date and time', modal_h2:'Your details',
+    }
+  };
+
+  function setLang(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      const text = TRANSLATIONS[lang]?.[key];
+      if (text !== undefined) el.innerHTML = text;
+    });
+    // Update title
+    document.title = lang === 'es'
+      ? 'Sotojets – Alquiler Moto de Agua Sotogrande | Reserva Online'
+      : 'Sotojets – Jet Ski Sotogrande | Book Now';
+    // Toggle buttons active state
+    document.getElementById('btn-es')?.classList.toggle('active', lang === 'es');
+    document.getElementById('btn-en')?.classList.toggle('active', lang === 'en');
+    // Store preference
+    try { localStorage.setItem('sotojets_lang', lang); } catch(e) {}
+  }
+
+  // Auto-detect language on load
+  (function() {
+    let lang = 'es';
+    try { lang = localStorage.getItem('sotojets_lang') || lang; } catch(e) {}
+    // Browser language hint
+    const browserLang = navigator.language?.slice(0,2);
+    if (!localStorage.getItem('sotojets_lang') && browserLang && browserLang !== 'es') lang = 'en';
+    setLang(lang);
+  })();
+
   // ── Nav scroll ──
   const nav = document.getElementById('nav');
   const urgencyEl = document.querySelector('.urgency');
